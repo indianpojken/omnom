@@ -10,5 +10,3 @@ export const invites = pgTable("invites", {
   role: role("owner"),
   createdAt: timestamp("createAt", { withTimezone: true }),
 });
-
-export type Invite = typeof invites.$inferSelect;
