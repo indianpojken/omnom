@@ -1,16 +1,16 @@
 import { eq } from "drizzle-orm";
 
-import { database } from "@/services/database.service";
-import { invites } from "@/schemas/invites.schema";
+import { database } from "@/services/database";
+import { invites } from "@/schemas/invites";
 
 import type { Invite, Roles } from "@/types";
 
-async function createInvite(role: Roles) {
+async function createInvite(role: Roles): Promise<Invite> {
   const [invite] = await database.insert(invites).values({ role }).returning();
   return invite;
 }
 
-async function getInviteById(id: Invite["id"]) {
+async function getInviteById(id: Invite["id"]): Promise<Invite> {
   const invite = await database.query.invites.findFirst({
     where: eq(invites.id, id),
   });
@@ -22,7 +22,7 @@ async function getInviteById(id: Invite["id"]) {
   }
 }
 
-async function deleteInviteById(id: Invite["id"]): Promise<Invite | undefined> {
+async function deleteInviteById(id: Invite["id"]): Promise<Invite> {
   const [invite] = await database
     .delete(invites)
     .where(eq(invites.id, id))
