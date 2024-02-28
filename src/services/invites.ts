@@ -18,7 +18,7 @@ async function getInviteById(id: Invite["id"]): Promise<Invite> {
   if (invite) {
     return invite;
   } else {
-    throw Error(`Failed to get invite: no invite by id '${id}'.`);
+    throw new Error(`Failed to get invite: no invite by id '${id}'.`);
   }
 }
 
@@ -31,6 +31,6 @@ async function deleteInviteById(id: Invite["id"]): Promise<Invite> {
   if (invite) {
     return invite;
   } else {
-    throw Error(`Failed to delete invite: no invite by id '${id}'.`);
+    throw new Error(`Failed to delete invite: no invite by id '${id}'.`);
   }
 }
