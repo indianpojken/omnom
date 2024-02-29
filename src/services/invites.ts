@@ -5,12 +5,12 @@ import { invites } from "@/schemas/invites";
 
 import type { Invite, Roles } from "@/types";
 
-async function createInvite(role: Roles): Promise<Invite> {
+export async function createInvite(role: Roles): Promise<Invite> {
   const [invite] = await database.insert(invites).values({ role }).returning();
   return invite;
 }
 
-async function getInviteById(id: Invite["id"]): Promise<Invite> {
+export async function getInviteById(id: Invite["id"]): Promise<Invite> {
   const invite = await database.query.invites.findFirst({
     where: eq(invites.id, id),
   });
@@ -22,7 +22,7 @@ async function getInviteById(id: Invite["id"]): Promise<Invite> {
   }
 }
 
-async function deleteInviteById(id: Invite["id"]): Promise<Invite> {
+export async function deleteInviteById(id: Invite["id"]): Promise<Invite> {
   const [invite] = await database
     .delete(invites)
     .where(eq(invites.id, id))
