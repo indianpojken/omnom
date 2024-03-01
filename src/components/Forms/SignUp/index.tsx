@@ -4,6 +4,7 @@ import { useFormState } from "react-dom";
 
 import { getInviteById } from "@/services/invites";
 import { SignUpAction } from "@/actions/auth";
+
 import SubmitButton from "@/components/Form/SubmitButton";
 import MatchFields, { useInputMatcher } from "@/components/Form/MatchFields";
 import Notification from "@/components/Form/Notification";
@@ -29,7 +30,6 @@ export default function SignUp() {
           id="password"
           type="password"
           placeholder="Lösenord"
-          autoComplete="off"
           required
           icon
           matcher={setMatch}

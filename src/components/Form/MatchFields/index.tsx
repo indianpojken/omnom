@@ -40,6 +40,10 @@ export default function MatchFields({
         )}
 
         <section className="flex flex-1 flex-col divide-zinc-200 divide-y-[1px]">
+          <label className="sr-only" htmlFor={id}>
+            {props.placeholder}
+          </label>
+
           <input
             className="flex-1 bg-zinc-100 p-2 text-zinc-600 outline-0 placeholder:text-zinc-400 focus:outline"
             {...props}

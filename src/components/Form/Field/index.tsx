@@ -21,6 +21,10 @@ export default function Field({
         </aside>
       )}
 
+      <label className="sr-only" htmlFor={props.id}>
+        {props.placeholder}
+      </label>
+
       <input {...props} className={getClasses()} />
     </article>
   );
