@@ -2,7 +2,10 @@
 
 import { createClient } from "@/utils/supabase/server";
 
-export async function SignUpAction(formData: FormData) {
+export async function SignUpAction(
+  prevState: string | null | undefined,
+  formData: FormData
+) {
   const supabase = createClient();
 
   const data = {
@@ -21,5 +24,9 @@ export async function SignUpAction(formData: FormData) {
 
   if (error) {
     console.log(error);
+    return `
+      Hoppsan! Något gick snett.
+      \nEpost-adressen verkar vara upptagen.
+    `;
   }
 }

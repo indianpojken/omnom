@@ -1,27 +1,12 @@
 "use client";
 
-import { InputHTMLAttributes } from "react";
-
 import { icons } from "../icons";
 
 export default function Field({
-  id,
-  type,
-  placeholder,
-  value,
-  onChange,
-  required,
   icon,
-  className,
-}: {
-  id?: string;
-  type: InputHTMLAttributes<HTMLInputElement>["type"];
-  placeholder: string;
-  value: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  required?: boolean;
+  ...props
+}: React.ComponentProps<"input"> & {
   icon?: boolean;
-  className?: string;
 }) {
   const getClasses = () =>
     icon
@@ -32,20 +17,11 @@ export default function Field({
     <article className="flex">
       {icon && (
         <aside className="flex justify-center item-center rounded-s-md border border-r-0 border-zinc-200 p-2">
-          {icons[type!]}
+          {icons[props.type!]}
         </aside>
       )}
 
-      <input
-        id={id}
-        name={id}
-        type={type}
-        className={className ?? getClasses()}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        required={required}
-      />
+      <input {...props} className={getClasses()} />
     </article>
   );
 }

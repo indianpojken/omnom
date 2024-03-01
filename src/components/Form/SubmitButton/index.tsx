@@ -15,7 +15,7 @@ export default function SubmitButton({
     <button
       disabled={disabled || pending}
       aria-disabled={pending}
-      className="disabled:opacity-60 disabled:hover:bg-amber-200 flex-1 rounded-md bg-amber-200 p-3 font-bold text-amber-900 transition-colors duration-300 hover:bg-amber-300"
+      className="transition-all disabled:opacity-60 disabled:hover:bg-amber-200 flex-1 rounded-md bg-amber-200 p-3 font-bold text-amber-900 transition-colors duration-300 hover:bg-amber-300"
     >
       {!pending ? (
         children
