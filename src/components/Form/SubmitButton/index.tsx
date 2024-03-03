@@ -15,14 +15,14 @@ export default function SubmitButton({
     <button
       disabled={disabled || pending}
       aria-disabled={pending}
-      className="transition-all disabled:opacity-60 disabled:hover:bg-amber-200 flex-1 rounded-md bg-amber-200 p-3 font-bold text-amber-900 duration-300 hover:bg-amber-300"
+      className="flex-1 transition-all font-bold text-lg enabled:hover:scale-105 text-amber-900 border-b-amber-900 border-b-2 bg-amber-100 p-2 rounded-md disabled:bg-zinc-100 disabled:text-zinc-400 disabled:border-b-zinc-300"
     >
       {!pending ? (
         children
       ) : (
         <svg
           aria-hidden="true"
-          className="inline w-4 h-4 text-amber-700 animate-spin fill-amber-200"
+          className="inline w-4 h-4 text-amber-700 animate-spin fill-zinc-100"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

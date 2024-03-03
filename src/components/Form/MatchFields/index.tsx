@@ -29,23 +29,23 @@ export default function MatchFields({
   return (
     <article
       className={`flex-1 flex pr-2 border-r-4 rounded-md transition-colors duration-300 ${
-        isMatch() ? "border-sky-400" : "border-zinc-200"
+        isMatch() ? "border-amber-600" : "border-zinc-200"
       }`}
     >
-      <section className="flex flex-1 rounded-md border border-zinc-200 divide-zinc-200 divide-x-[1px] overflow-hidden">
+      <section className="flex flex-1 rounded-md border-b-2 border-amber-900 text-amber-950 bg-amber-100">
         {icon && (
-          <aside className="flex justify-center item-center p-2">
+          <aside className="flex justify-center item-center p-2 text-amber-900">
             {icons[props.type!]}
           </aside>
         )}
 
-        <section className="flex flex-1 flex-col divide-zinc-200 divide-y-[1px]">
+        <section className="flex flex-1 flex-col ">
           <label className="sr-only" htmlFor={id}>
             {props.placeholder}
           </label>
 
           <input
-            className="flex-1 bg-zinc-100 p-2 text-zinc-600 outline-0 placeholder:text-zinc-400 focus:outline"
+            className="flex-1 p-2 text-amber-950 bg-amber-50 outline-0 placeholder:text-zinc-400 focus:outline border-b border-b-amber-100"
             {...props}
             id={id}
             name={id}
@@ -57,7 +57,7 @@ export default function MatchFields({
 
           <input
             {...props}
-            className="flex-1 bg-zinc-100 p-2 text-zinc-600 outline-0 placeholder:text-zinc-400 focus:outline"
+            className="flex-1 p-2 text-amber-950 bg-amber-50 outline-0 placeholder:text-zinc-400 focus:outline"
             value={values.second}
             onChange={(event) =>
               setValues({ ...values, second: event.target.value })
