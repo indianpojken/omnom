@@ -7,7 +7,6 @@ import { SignUpAction } from "@/actions/auth";
 import SubmitButton from "@/components/Form/SubmitButton";
 import MatchFields, { useInputMatcher } from "@/components/Form/MatchFields";
 import Notification from "@/components/Form/Notification";
-import Field from "@/components/Form/Field";
 
 export default function SignUp() {
   const { setMatch, isAllMatching } = useInputMatcher();

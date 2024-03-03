@@ -27,11 +27,7 @@ export default function MatchFields({
   useEffect(() => matcher(id, isMatch()), [values]);
 
   return (
-    <article
-      className={`flex-1 flex pr-2 border-r-4 rounded-md transition-colors duration-300 ${
-        isMatch() ? "border-amber-600" : "border-zinc-200"
-      }`}
-    >
+    <article className="flex-1 flex">
       <section className="flex flex-1 rounded-md border-b-2 border-amber-900 text-amber-950 bg-amber-100">
         {icon && (
           <aside className="flex justify-center item-center p-2 text-amber-900">
@@ -45,7 +41,7 @@ export default function MatchFields({
           </label>
 
           <input
-            className="flex-1 p-2 text-amber-950 bg-amber-50 outline-0 placeholder:text-zinc-400 focus:outline border-b border-b-amber-100"
+            className="flex-1 p-2 text-amber-950 bg-amber-50 outline-0 rounded-se-md placeholder:text-zinc-400 focus:outline border-b border-b-amber-100"
             {...props}
             id={id}
             name={id}
@@ -57,7 +53,7 @@ export default function MatchFields({
 
           <input
             {...props}
-            className="flex-1 p-2 text-amber-950 bg-amber-50 outline-0 placeholder:text-zinc-400 focus:outline"
+            className="flex-1 p-2 text-amber-950 bg-amber-50 outline-0 rounded-ee-md placeholder:text-zinc-400 focus:outline"
             value={values.second}
             onChange={(event) =>
               setValues({ ...values, second: event.target.value })
