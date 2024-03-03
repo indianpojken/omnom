@@ -1,4 +1,4 @@
-import { readJsonFile } from "@/lib/json";
+import { readJsonFile } from "@/utils/json";
 import type { Municipalities } from "@/types";
 
 export async function getMunicipalities(): Promise<Municipalities> {
