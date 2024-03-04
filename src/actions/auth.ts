@@ -30,7 +30,7 @@ export async function SignUpAction(
     ...data,
     options: {
       data: {
-        role: "owner",
+        role: "user",
       },
     },
   });

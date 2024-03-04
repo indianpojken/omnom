@@ -7,6 +7,6 @@ export const invites = pgTable("invites", {
   id: text("id")
     .$defaultFn(() => createId())
     .primaryKey(),
-  role: role("owner"),
+  role: role("user"),
   createdAt: timestamp("createAt", { withTimezone: true }),
 });
