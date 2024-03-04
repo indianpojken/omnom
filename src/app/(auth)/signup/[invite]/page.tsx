@@ -6,8 +6,8 @@ export default async function Page({ params }: { params: { invite: string } }) {
   // const invite = await getInviteById(params.invite);
 
   return (
-    <main className="w-96 gap-4 overflow-hidden">
+    <article className="w-96 gap-4 overflow-hidden">
       <SignUp />
-    </main>
+    </article>
   );
 }
