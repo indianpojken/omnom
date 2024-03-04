@@ -25,7 +25,7 @@ export default function Field({
         {props.placeholder}
       </label>
 
-      <input {...props} className={getClasses()} />
+      <input {...props} name={props.id} className={getClasses()} />
     </article>
   );
 }
