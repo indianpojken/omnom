@@ -7,6 +7,7 @@ export const restaurants = pgTable("restaurants", {
     .primaryKey(),
   owner: text("owner").notNull(),
   name: text("name").notNull(),
+  municipal: text("name").notNull(),
   address: text("address").notNull(),
   zipCode: text("zipCode").notNull(),
   phoneNumber: text("phoneNumber"),
