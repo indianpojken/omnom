@@ -1,7 +1,7 @@
 import { Bebas_Neue } from "next/font/google";
 
 import { getMunicipalities } from "@/services/municipalities";
-import MunicipalitiesLetterNavigator from "@/components/LetterNavigator";
+
 import MunicipalList from "@/components/MunicipalList";
 import LetterNavigator from "@/components/LetterNavigator";
 
