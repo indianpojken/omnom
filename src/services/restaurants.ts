@@ -17,8 +17,8 @@ export async function createRestaurant(
   return createdRestaurant;
 }
 
-export async function getAllRestaurantsFromUser(id: User["id"]) {
-  return await database.query.restaurants.findMany({
+export async function getRestaurantFromUser(id: User["id"]) {
+  return await database.query.restaurants.findFirst({
     where: eq(restaurants.owner, id),
   });
 }
