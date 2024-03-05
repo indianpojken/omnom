@@ -35,6 +35,14 @@ export async function getRestaurant(id: Restaurant["id"]) {
   }
 }
 
+export async function getRestaurantsByMunicipal(
+  municipal: Restaurant["municipal"]
+) {
+  return await database.query.restaurants.findMany({
+    where: eq(restaurants.municipal, municipal),
+  });
+}
+
 export async function getAllRestaurants(): Promise<Restaurant[]> {
   return await database.query.restaurants.findMany();
 }
