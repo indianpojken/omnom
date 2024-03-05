@@ -17,7 +17,7 @@ export default async function Page() {
       <UserToolbar user={user} />
 
       <AnimatePresence>
-        {restaurant && (
+        {!restaurant && (
           <MotionArticle className="mt-4" exit={{ opacity: 0 }}>
             <header className="my-4 bg-amber-950 text-amber-50 p-4 rounded-md">
               <p className="text-center font-semibold">
