@@ -1,5 +1,6 @@
 "use client";
 
+import Button from "@/components/Button";
 import { useFormStatus } from "react-dom";
 
 export default function SubmitButton({
@@ -12,10 +13,10 @@ export default function SubmitButton({
   const { pending } = useFormStatus();
 
   return (
-    <button
+    <Button
       disabled={disabled || pending}
       aria-disabled={pending}
-      className="flex-1 transition-all font-bold text-lg enabled:hover:scale-105 text-amber-900 border-b-amber-900 border-b-2 bg-amber-100 p-2 rounded-md disabled:bg-zinc-100 disabled:text-zinc-400 disabled:border-b-zinc-300"
+      className="overflow-hidden flex-1 transition-all font-bold text-lg enabled:hover:scale-100 text-amber-900 border-b-amber-900 border-b-2 bg-amber-100 p-2 rounded-md disabled:bg-zinc-100 disabled:text-zinc-400 disabled:border-b-zinc-300"
     >
       {!pending ? (
         children
@@ -37,6 +38,6 @@ export default function SubmitButton({
           />
         </svg>
       )}
-    </button>
+    </Button>
   );
 }

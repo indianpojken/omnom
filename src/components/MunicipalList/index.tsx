@@ -1,5 +1,6 @@
 import { groupMunicipalitiesByInitial } from "@/services/municipalities";
 import type { Municipalities } from "@/types";
+import Link from "next/link";
 
 export default function MunicipalList({
   municipalities,
@@ -18,12 +19,11 @@ export default function MunicipalList({
 
           <section id={`${letter}`} className="flex flex-wrap gap-4 mt-4">
             {groupedMunicipalities[letter].map((municipal) => (
-              <article
-                className="self-start text-amber-900 bg-amber-50 p-2 rounded-md"
-                key={municipal}
-              >
-                {municipal}
-              </article>
+              <Link key={municipal} href="/">
+                <article className="transition-colors self-start text-amber-900 hover:text-amber-100 bg-amber-50 hover:bg-amber-950 p-2 rounded-md">
+                  {municipal}
+                </article>
+              </Link>
             ))}
           </section>
         </section>
