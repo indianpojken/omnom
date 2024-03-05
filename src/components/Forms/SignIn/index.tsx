@@ -19,7 +19,7 @@ export default function Sign() {
           type="email"
           placeholder="E-postadress"
           required
-          icon
+          icon="email"
           pattern=".+@.+\..{2,4}"
         />
 
@@ -28,7 +28,7 @@ export default function Sign() {
           type="password"
           placeholder="Lösenord"
           required
-          icon
+          icon="password"
           minLength={6}
         />
       </section>

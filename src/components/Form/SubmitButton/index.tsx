@@ -1,6 +1,6 @@
 "use client";
 
-import Button from "@/components/Button";
+import { motion } from "framer-motion";
 import { useFormStatus } from "react-dom";
 
 export default function SubmitButton({
@@ -13,10 +13,11 @@ export default function SubmitButton({
   const { pending } = useFormStatus();
 
   return (
-    <Button
+    <motion.button
+      whileTap={{ scale: 0.9 }}
       disabled={disabled || pending}
       aria-disabled={pending}
-      className="overflow-hidden flex-1 transition-all font-bold text-lg enabled:hover:scale-100 text-amber-900 border-b-amber-900 border-b-2 bg-amber-100 p-2 rounded-md disabled:bg-zinc-100 disabled:text-zinc-400 disabled:border-b-zinc-300"
+      className="flex-1 font-bold text-xl transition-all bg-amber-100 hover:bg-amber-800 text-amber-900 hover:text-amber-200 border-b-amber-900 hover:border-b-amber-950 border-b-2  p-2 rounded-md disabled:bg-zinc-100 disabled:text-zinc-400 disabled:border-b-zinc-300"
     >
       {!pending ? (
         children
@@ -38,6 +39,6 @@ export default function SubmitButton({
           />
         </svg>
       )}
-    </Button>
+    </motion.button>
   );
 }
