@@ -8,6 +8,7 @@ export async function getUser(): Promise<User> {
 
   if (error) {
     // if (error || !data?.user) {
+    console.log(error);
     throw new Error("Unauthorized.");
   }
 

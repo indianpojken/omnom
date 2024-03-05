@@ -35,6 +35,10 @@ export async function getRestaurant(id: Restaurant["id"]) {
   }
 }
 
+export async function getAllRestaurants(): Promise<Restaurant[]> {
+  return await database.query.restaurants.findMany();
+}
+
 export async function deleteRestaurant(
   owner: Restaurant["owner"],
   id: Restaurant["id"]
