@@ -7,7 +7,7 @@ import type { User } from "@supabase/supabase-js";
 import type { Restaurant } from "@/types";
 
 export async function createRestaurant(
-  restaurant: Restaurant
+  restaurant: Omit<Restaurant, "id">
 ): Promise<Restaurant> {
   const [createdRestaurant] = await database
     .insert(restaurants)
@@ -19,7 +19,7 @@ export async function createRestaurant(
 
 export async function getAllRestaurantsFromUser(id: User["id"]) {
   return await database.query.restaurants.findMany({
-    where: eq(restaurants.id, id),
+    where: eq(restaurants.owner, id),
   });
 }
 

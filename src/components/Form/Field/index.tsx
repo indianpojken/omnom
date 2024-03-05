@@ -6,7 +6,7 @@ export default function Field({
   icon,
   ...props
 }: React.ComponentProps<"input"> & {
-  icon?: boolean;
+  icon?: string;
 }) {
   const getClasses = () =>
     icon
@@ -14,10 +14,10 @@ export default function Field({
       : "flex-1 rounded-md border-b-2 border-amber-900 text-amber-950 bg-amber-50 p-2  outline-0 placeholder:text-zinc-400 focus:outline";
 
   return (
-    <article className="flex">
+    <article className="flex flex-1">
       {icon && (
         <aside className="flex justify-center item-center bg-amber-100 border-amber-900 rounded-s-md border-b-2 p-2 text-amber-900">
-          {icons[props.type!]}
+          {icons[icon]}
         </aside>
       )}
 
