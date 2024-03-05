@@ -1,5 +1,6 @@
 import { readJsonFile } from "@/utils/json";
 import type { Municipalities } from "@/types";
+import { getAllRestaurants } from "./restaurants";
 
 export async function getMunicipalities(): Promise<Municipalities> {
   const { municipalities } = await readJsonFile("municipalities.json");
@@ -14,4 +15,9 @@ export function groupMunicipalitiesByInitial(municipalities: Municipalities) {
     }),
     {}
   );
+}
+
+export async function getAllMunicipalitiesWithRestaurants() {
+  const restaurants = await getAllRestaurants();
+  return restaurants.map((restaurant) => restaurant.municipal);
 }
