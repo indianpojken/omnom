@@ -1,12 +1,22 @@
+"use client";
+
+import { useFormState } from "react-dom";
+
 import Field from "@/components/Form/Field";
 import SubmitButton from "@/components/Form/SubmitButton";
-import { getMunicipalities } from "@/services/municipalities";
+import MunicipalSelector from "../../Form/MunicipalSelector";
+import { createRestaurantAction } from "@/actions/restaurant";
 
-export default async function CreateRestaurant() {
-  const municipalities = await getMunicipalities();
+export default function CreateRestaurant({ owner }: { owner: string }) {
+  const createRestaurantActionWithOwner = createRestaurantAction.bind(
+    null,
+    owner
+  );
+
+  const [sate, action] = useFormState(createRestaurantActionWithOwner, null);
 
   return (
-    <form className="flex flex-col gap-4">
+    <form action={action} className="flex flex-col gap-4">
       <Field
         id="name"
         type="text"
@@ -15,26 +25,11 @@ export default async function CreateRestaurant() {
         icon="restaurant"
       />
 
-      <select
-        className="rounded-md border-b-2 border-amber-900 text-amber-950 bg-amber-50 p-3 outline-0 placeholder:text-zinc-400 focus:outline"
-        name="municipal"
-        id="municipal"
-      >
-        <option className="font-sans text-amber-950">Välj kommun</option>
-        {municipalities.map((municipal) => (
-          <option
-            className="font-sans text-amber-950 selection:bg-amber-950 hover:bg-amber-950"
-            key={municipal}
-            defaultValue={municipal}
-          >
-            {municipal}
-          </option>
-        ))}
-      </select>
+      <MunicipalSelector />
 
       <section className="flex flex-wrap gap-4">
         <Field
-          id="opening"
+          id="lunchHoursOpening"
           type="time"
           defaultValue="11:00"
           required
@@ -42,7 +37,7 @@ export default async function CreateRestaurant() {
         />
 
         <Field
-          id="closing"
+          id="lunchHoursClosing"
           type="time"
           defaultValue="13:00"
           required
@@ -73,17 +68,10 @@ export default async function CreateRestaurant() {
           id="phoneNumber"
           type="text"
           placeholder="Telefonnummer"
-          required
           icon="phone"
         />
 
-        <Field
-          id="website"
-          type="text"
-          placeholder="Webbsida"
-          required
-          icon="url"
-        />
+        <Field id="website" type="text" placeholder="Webbsida" icon="url" />
       </section>
 
       <SubmitButton>Spara</SubmitButton>

@@ -6,10 +6,10 @@ import CreateRestaurant from "@/components/Forms/CreateRestaurant";
 
 export default async function Page() {
   const user = await getUser();
-  // const restaurants = await getAllRestaurantsFromUser(user.id);
-  const restaurants = [];
-  console.log(user);
-  // console.log(restaurants);
+  const restaurants = await getAllRestaurantsFromUser(user.id);
+
+  console.log(user.id);
+  console.log(restaurants);
 
   return (
     <section>
@@ -24,7 +24,7 @@ export default async function Page() {
             </p>
           </header>
 
-          <CreateRestaurant />
+          <CreateRestaurant owner={user.id} />
         </article>
       )}
     </section>

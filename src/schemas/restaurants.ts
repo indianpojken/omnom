@@ -7,10 +7,11 @@ export const restaurants = pgTable("restaurants", {
     .primaryKey(),
   owner: text("owner").notNull(),
   name: text("name").notNull(),
-  municipal: text("name").notNull(),
+  municipal: text("municipal").notNull(),
   address: text("address").notNull(),
   zipCode: text("zipCode").notNull(),
+  lunchHoursOpening: text("lunchHoursOpening").notNull(),
+  lunchHoursClosing: text("lunchHoursClosing").notNull(),
   phoneNumber: text("phoneNumber"),
   website: text("website"),
-  lunchHours: text("lunchHours"),
 });
