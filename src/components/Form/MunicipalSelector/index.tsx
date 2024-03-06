@@ -1,20 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { municipalities } from "@/constants";
 
 export default function MunicipalSelector() {
-  const [municipalities, setMunicipalities] = useState<string[]>([]);
-
-  useEffect(() => {
-    const fetcher = async () => {
-      const res = await fetch("/api/municipalities");
-      const data = await res.json();
-      setMunicipalities(data);
-    };
-
-    fetcher();
-  }, []);
-
   return (
     <select
       className="rounded-md border-b-2 border-amber-900 text-amber-950 bg-amber-50 p-3 outline-0 placeholder:text-zinc-400 focus:outline"

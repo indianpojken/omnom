@@ -1,19 +1,17 @@
-import {
-  getAllMunicipalitiesWithRestaurants,
-  getMunicipalities,
-} from "@/services/municipalities";
+import { getAllMunicipalitiesWithRestaurants } from "@/services/municipalities";
+
+import { municipalities } from "@/constants";
 
 import MunicipalList from "@/components/MunicipalList";
 import LetterNavigator from "@/components/LetterNavigator";
 import Logo from "@/components/Logo/Logo";
 
 export default async function Page() {
-  const municipalities = await getMunicipalities();
   const municipalitiesWithRestaurants =
     await getAllMunicipalitiesWithRestaurants();
 
   return (
-    <main className="flex mx-auto min-h-screen flex-col px-12 py-10 max-w-[800px]">
+    <main className="flex mx-auto min-h-screen flex-col px-6 py-10 max-w-[800px]">
       <header>
         <Logo />
       </header>
