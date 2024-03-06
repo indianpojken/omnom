@@ -26,7 +26,7 @@ export default async function Page() {
               </p>
             </header>
 
-            <CreateRestaurant owner={user.id} />
+            <CreateRestaurant />
           </MotionArticle>
         )}
       </AnimatePresence>

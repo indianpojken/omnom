@@ -2,6 +2,7 @@
 
 import { createRestaurant } from "@/services/restaurants";
 import { Restaurant } from "@/types";
+import { getUser } from "@/utils/user";
 import { revalidatePath } from "next/cache";
 
 function getData(formData: FormData): Omit<Restaurant, "id" | "owner"> {
@@ -17,12 +18,9 @@ function getData(formData: FormData): Omit<Restaurant, "id" | "owner"> {
   };
 }
 
-export async function createRestaurantAction(
-  owner: string,
-  prevState: any,
-  formData: FormData
-) {
-  const data = { owner, ...getData(formData) };
+export async function createRestaurantAction(formData: FormData) {
+  const user = await getUser();
+  const data = { owner: user.id, ...getData(formData) };
 
   console.log(data);
 
