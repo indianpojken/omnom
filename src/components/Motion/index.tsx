@@ -1,0 +1,36 @@
+"use client";
+
+import { motion, AnimatePresence } from "framer-motion";
+
+export const MotionMain = motion.main;
+export const MotionHeader = motion.header;
+export const MotionNav = motion.nav;
+export const MotionArticle = motion.article;
+export const MotionSection = motion.section;
+export const MotionAside = motion.aside;
+export const MotionFigure = motion.figure;
+export const MotionFigcaption = motion.figcaption;
+export const MotionH1 = motion.h1;
+export const MotionH2 = motion.h2;
+export const MotionH3 = motion.h3;
+export const MotionH4 = motion.h4;
+export const MotionH5 = motion.h5;
+export const MotionH6 = motion.h6;
+export const MotionP = motion.p;
+export const MotionSpan = motion.span;
+export const MotionLabel = motion.label;
+export const MotionButton = motion.button;
+export const MotionInput = motion.input;
+export const MotionSelect = motion.select;
+export const MotionTextarea = motion.textarea;
+export const MotionUl = motion.ul;
+export const MotionOl = motion.ol;
+export const MotionLi = motion.li;
+export const MotionTable = motion.table;
+export const MotionTbody = motion.tbody;
+export const MotionThead = motion.thead;
+export const MotionTr = motion.tr;
+export const MotionTd = motion.td;
+export const MotionTh = motion.th;
+export const MotionFooter = motion.footer;
+export { AnimatePresence };
