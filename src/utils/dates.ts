@@ -7,10 +7,6 @@ dayjs.extend(weekOfYear);
 dayjs.locale(dayjsLocaleSV);
 dayjs.extend(weekday);
 
-export function getCurrentWeek(): number {
-  return dayjs().week();
-}
-
 export function getDayFromDate(date: string): string {
   return dayjs(date).format("dddd");
 }
@@ -26,5 +22,7 @@ export function getDatesByYearAndWeek(year: number, week: number): string[] {
 }
 
 export function getDatesFromWeek(week: number): string[] {
-  return getDatesByYearAndWeek(dayjs().year(), 10);
+  return getDatesByYearAndWeek(dayjs().year(), week);
 }
+
+export { dayjs };
