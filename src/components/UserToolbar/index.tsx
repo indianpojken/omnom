@@ -3,13 +3,13 @@
 import { User } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
 
-import { createClient } from "@/utils/supabase/client";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 export default function UserToolbar({ user }: { user: User }) {
   const router = useRouter();
 
   const signOut = async () => {
-    const supabase = createClient();
+    const supabase = createClientComponentClient();
     const { error } = await supabase.auth.signOut();
 
     if (!error) {
