@@ -8,3 +8,14 @@ export type Roles = (typeof roles)[number];
 
 export type Municipal = string;
 export type Municipalities = Municipal[];
+
+export type Menu = Record<
+  string,
+  {
+    items: {
+      food: string;
+      vegetarian: boolean;
+      allergies: string[];
+    }[];
+  }
+>;

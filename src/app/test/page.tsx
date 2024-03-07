@@ -1,94 +1,80 @@
 "use client";
 
-import { useState } from "react";
+import { TestAction } from "@/actions/test";
+import { useForm, useFieldArray, UseFormReturn } from "react-hook-form";
 
-type Field<T> = (
-  add: () => void,
-  remove: (index: number) => void,
-  index: number,
-  forwards: (name: keyof T) => {
-    value: T[keyof T];
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  }
-) => React.ReactNode;
+import type { Menu } from "@/types";
 
-type FieldState<T> = {
-  values: T;
-  component: Field<T>;
-}[];
-
-function ArrayField<T>({ id, fields }: { id: string; fields: Field<T> }) {
-  const [items, setItems] = useState<FieldState<T>>([
-    { values: {} as T, component: fields },
-  ]);
-
-  const add = () => {
-    setItems([...items, { values: {} as T, component: fields }]);
-  };
-
-  const remove = (index: number) => {
-    setItems([...items.slice(0, index), ...items.slice(index + 1)]);
-  };
-
-  console.log(items.map((item) => item.values));
+function MenuField({ id, form }: { id: string; form: UseFormReturn<Menu> }) {
+  const { control, register } = form;
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: `${id}.items`,
+  });
 
   return (
-    <section>
-      {items.map((item, index) =>
-        item.component(add, remove, index, (name) => ({
-          value: items[index].values[name],
-          onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
-            setItems((prevItems) => [
-              ...prevItems.slice(0, index),
-              {
-                ...prevItems[index],
-                values: {
-                  ...prevItems[index].values,
-                  [name]: event.target.value,
-                },
-              },
-              ...prevItems.slice(index + 1),
-            ]);
-          },
-        }))
-      )}
-    </section>
+    <article>
+      {fields.map((data, index) => (
+        <article key={`${index}`}>
+          <input
+            className="border border-zinc-300"
+            placeholder="first name"
+            {...register(`${id}.items.${index}.food`, {
+              required: true,
+            })}
+          />
+
+          <label className="select-none">
+            <input
+              type="checkbox"
+              className="border border-zinc-300"
+              {...register(`${id}.items.${index}.vegetarian`)}
+            />
+            Vegetarian
+          </label>
+
+          <section>
+            <input
+              type="checkbox"
+              value="gluten"
+              {...register(`${id}.items.${index}.allergies`)}
+            />
+
+            <input
+              type="checkbox"
+              value="laktos"
+              {...register(`${id}.items.${index}.allergies`)}
+            />
+          </section>
+
+          <button type="button" onClick={() => remove(index)}>
+            REMOVE
+          </button>
+        </article>
+      ))}
+
+      <button
+        type="button"
+        onClick={() => append({ food: "", vegetarian: false, allergies: [] })}
+      >
+        +
+      </button>
+    </article>
   );
 }
 
 export default function Page() {
+  const form = useForm<Menu>();
+
   return (
     <main className="flex mx-auto min-h-screen flex-col px-6 py-10 max-w-[800px]">
-      <ArrayField<{ food: string; allergen: number }>
-        id="item"
-        fields={(add, remove, index, forwards) => (
-          <article key={index} className="flex gap-4">
-            <input
-              {...forwards("food")}
-              type="text"
-              className="border border-zinc-900"
-            />
-
-            <button onClick={() => remove(index)}>remove</button>
-            <button onClick={() => add()}>add</button>
-            <p>{index}</p>
-
-            <input
-              type="radio"
-              id="huey"
-              name="drone"
-              {...forwards("allergen")}
-            />
-
-            <input
-              type="radio"
-              id="huey"
-              name="drone"
-              {...forwards("allergen")}
-            />
-          </article>
-        )}
-      />
+      <form
+        className="flex flex-col items-start"
+        action={() => form.handleSubmit((data) => TestAction(data))()}
+      >
+        <MenuField form={form} id="hej" />
+        <input type="submit" />
+      </form>
     </main>
   );
 }
