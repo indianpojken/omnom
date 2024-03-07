@@ -1,6 +1,5 @@
 import { getUser } from "@/utils/user";
 import UserToolbar from "@/components/UserToolbar";
-import ManageRestaurants from "@/components/ManageRestaurants";
 import { getRestaurantFromUser } from "@/services/restaurants";
 import CreateRestaurant from "@/components/Forms/CreateRestaurant";
 import { AnimatePresence, MotionArticle } from "@/components/Motion";
@@ -11,15 +10,11 @@ export default async function Page() {
   const user = await getUser();
   const restaurant = await getRestaurantFromUser(user.id);
 
-  console.log(user.id);
-  console.log(restaurant);
-  console.log(getDatesByYearAndWeek(2024, 10));
+  const dates = getDatesByYearAndWeek(2024, 10);
 
   return (
     <section>
       <UserToolbar user={user} />
-
-      <p>{getCurrentWeek()}</p>
 
       <AnimatePresence>
         {!restaurant && (
@@ -35,7 +30,9 @@ export default async function Page() {
           </MotionArticle>
         )}
 
-        <article className="mt-4">{restaurant && <ManageMenu />}</article>
+        <article className="mt-2">
+          {restaurant && <ManageMenu dates={dates} />}
+        </article>
       </AnimatePresence>
     </section>
   );
