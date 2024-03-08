@@ -1,6 +1,10 @@
 "use server";
 
-import { createRestaurant } from "@/services/restaurants";
+import {
+  createRestaurant,
+  getRestaurantFromUser,
+  updateRestaurant,
+} from "@/services/restaurants";
 import { Restaurant } from "@/types";
 import { getUser } from "@/utils/user";
 import { revalidatePath } from "next/cache";
@@ -22,8 +26,19 @@ export async function createRestaurantAction(formData: FormData) {
   const user = await getUser();
   const data = { owner: user.id, ...getData(formData) };
 
-  console.log(data);
-
   await createRestaurant(data);
   revalidatePath("/manage");
+}
+
+export async function updateRestaurantAction(formData: FormData) {
+  const user = await getUser();
+  const data = { owner: user.id, ...getData(formData) };
+  const restaurant = await getRestaurantFromUser(user.id);
+
+  if (restaurant) {
+    await updateRestaurant(restaurant, data);
+    revalidatePath("/manage");
+  } else {
+    throw new Error(`No restaurant found.`);
+  }
 }

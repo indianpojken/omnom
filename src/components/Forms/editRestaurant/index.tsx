@@ -3,17 +3,28 @@
 import { municipalities } from "@/constants";
 import Field from "@/components/Form/Field";
 import SubmitButton from "@/components/Form/SubmitButton";
-import { createRestaurantAction } from "@/actions/restaurant";
+import {
+  createRestaurantAction,
+  updateRestaurantAction,
+} from "@/actions/restaurant";
+import { Restaurant } from "@/types";
 
-export default function CreateRestaurant() {
+export default function EditRestaurant({
+  restaurant,
+}: {
+  restaurant?: Restaurant;
+}) {
+  const action = restaurant ? updateRestaurantAction : createRestaurantAction;
+
   return (
-    <form action={createRestaurantAction} className="flex flex-col gap-4">
+    <form action={action} className="flex flex-col gap-4">
       <Field
         id="name"
         type="text"
         placeholder="Restaurangens namn"
         required
         icon="restaurant"
+        defaultValue={restaurant?.name}
       />
 
       <select
@@ -21,12 +32,14 @@ export default function CreateRestaurant() {
         name="municipal"
         id="municipal"
       >
-        <option className="font-sans text-amber-950">Välj kommun</option>
+        {restaurant?.municipal ?? (
+          <option className="font-sans text-amber-950">Välj kommun</option>
+        )}
         {municipalities.map((municipal) => (
           <option
             className="font-sans text-amber-950 selection:bg-amber-950 hover:bg-amber-950"
             key={municipal}
-            defaultValue={municipal}
+            defaultValue={restaurant?.municipal ?? municipal}
           >
             {municipal}
           </option>
@@ -37,7 +50,7 @@ export default function CreateRestaurant() {
         <Field
           id="lunchHoursOpening"
           type="time"
-          defaultValue="11:00"
+          defaultValue={restaurant?.lunchHoursOpening ?? "11:00"}
           required
           icon="clock"
         />
@@ -45,7 +58,7 @@ export default function CreateRestaurant() {
         <Field
           id="lunchHoursClosing"
           type="time"
-          defaultValue="13:00"
+          defaultValue={restaurant?.lunchHoursClosing ?? "13:00"}
           required
           icon="clock"
         />
@@ -58,6 +71,7 @@ export default function CreateRestaurant() {
           placeholder="Address"
           required
           icon="location"
+          defaultValue={restaurant?.address ?? ""}
         />
 
         <Field
@@ -66,6 +80,7 @@ export default function CreateRestaurant() {
           placeholder="Postnummer"
           required
           icon="number"
+          defaultValue={restaurant?.zipCode ?? ""}
         />
       </section>
 
@@ -75,9 +90,16 @@ export default function CreateRestaurant() {
           type="text"
           placeholder="Telefonnummer"
           icon="phone"
+          defaultValue={restaurant?.phoneNumber ?? ""}
         />
 
-        <Field id="website" type="text" placeholder="Webbsida" icon="url" />
+        <Field
+          id="website"
+          type="text"
+          placeholder="Webbsida"
+          icon="url"
+          defaultValue={restaurant?.website ?? ""}
+        />
       </section>
 
       <SubmitButton>Spara</SubmitButton>

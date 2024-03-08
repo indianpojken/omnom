@@ -10,7 +10,7 @@ export default function SubmitButton({
 }: {
   children: React.ReactNode;
   disabled?: boolean;
-  className: string;
+  className?: string;
 }) {
   const { pending } = useFormStatus();
 

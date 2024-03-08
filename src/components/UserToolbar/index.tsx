@@ -5,11 +5,18 @@ import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import CreateRestaurant from "../Forms/CreateRestaurant";
+import EditRestaurant from "../Forms/editRestaurant";
 import { useState } from "react";
 import { icons } from "../Form/icons";
+import { Restaurant } from "@/types";
 
-export default function UserToolbar({ user }: { user: User }) {
+export default function UserToolbar({
+  user,
+  restaurant,
+}: {
+  user: User;
+  restaurant?: Restaurant;
+}) {
   const router = useRouter();
   const [showEditRestaurant, setShowEditRestaurant] = useState(false);
 
@@ -43,13 +50,15 @@ export default function UserToolbar({ user }: { user: User }) {
         </section>
 
         <section className="ml-auto flex gap-4">
-          <button
-            className="duration-500 transition-colors hover:text-amber-600"
-            title="Redigera restaurang"
-            onClick={() => setShowEditRestaurant(!showEditRestaurant)}
-          >
-            {icons["edit"]}
-          </button>
+          {restaurant && (
+            <button
+              className="duration-500 transition-colors hover:text-amber-600"
+              title="Redigera restaurang"
+              onClick={() => setShowEditRestaurant(!showEditRestaurant)}
+            >
+              {icons["edit"]}
+            </button>
+          )}
 
           <button
             className="duration-500 transition-colors hover:text-amber-600"
@@ -69,7 +78,7 @@ export default function UserToolbar({ user }: { user: User }) {
             // exit={{ scaleY: 0 }}
             className="mt-2 p-4 bg-white border border-amber-200 rounded-md"
           >
-            <CreateRestaurant />
+            <EditRestaurant restaurant={restaurant} />
           </motion.section>
         )}
       </AnimatePresence>
