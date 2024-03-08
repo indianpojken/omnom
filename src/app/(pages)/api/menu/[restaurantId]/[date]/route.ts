@@ -1,5 +1,6 @@
 import { getMenuByRestaurantIdAndDate } from "@/services/menus";
 import { Date } from "@/types";
+import { getDatesByYearAndWeek } from "@/utils/dates";
 
 export const dynamic = "force-dynamic";
 
@@ -27,7 +28,22 @@ export async function GET(
 
   if (validateDate(params.date)) {
     const menu = await getMenuByRestaurantIdAndDate(restaurantId, date);
-    return Response.json({ menu: menu });
+
+    if (menu) {
+      return Response.json({ menu: menu.data });
+    } else {
+      const backup = getDatesByYearAndWeek(date.year, date.week).reduce(
+        (previous, date) => ({
+          ...previous,
+          [date]: {
+            items: [{ food: "", vegetarian: false, allergies: [] }],
+          },
+        }),
+        {}
+      );
+
+      return Response.json({ menu: backup });
+    }
   } else {
     return Response.json({ error: "Invalid date." });
   }
