@@ -9,7 +9,7 @@ import { Menu, Restaurant, Date, MenuEntry } from "@/types";
 export async function getMenuByRestaurantIdAndDate(
   restaurantId: Restaurant["id"],
   date: Date
-): Promise<MenuEntry | undefined> {
+): Promise<MenuEntry> {
   const menu = await database.query.menus.findFirst({
     where: and(
       eq(menus.restaurant, restaurantId),
@@ -17,7 +17,7 @@ export async function getMenuByRestaurantIdAndDate(
     ),
   });
 
-  return menu ?? undefined;
+  return menu as MenuEntry;
 }
 
 export async function upsertMenu(

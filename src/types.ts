@@ -6,6 +6,7 @@ import { roles } from "@/constants";
 export type Invite = typeof invites.$inferSelect;
 export type Restaurant = typeof restaurants.$inferSelect;
 export type Roles = (typeof roles)[number];
+export type MenuEntry = typeof menus.$inferSelect;
 
 export type Municipal = string;
 export type Municipalities = Municipal[];
@@ -25,7 +26,3 @@ export type Menu = Record<
     }[];
   }
 >;
-
-export type MenuEntry = Omit<typeof menus.$inferSelect, "data"> & {
-  data: Menu;
-};

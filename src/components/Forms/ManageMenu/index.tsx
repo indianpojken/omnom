@@ -18,9 +18,7 @@ export default function ManageMenu({ restaurant }: { restaurant: Restaurant }) {
       <WeekSelector callback={(date) => setSelectedDate(date)} />
 
       {selectedDate && (
-        <Suspense fallback={<p>Loading...</p>}>
-          <MenuEditor restaurant={restaurant} date={selectedDate} />
-        </Suspense>
+        <MenuEditor restaurant={restaurant} date={selectedDate} />
       )}
     </article>
   );

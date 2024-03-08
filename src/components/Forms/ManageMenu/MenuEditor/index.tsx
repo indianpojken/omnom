@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import MenuField from "@/components/Form/MenuField";
@@ -8,6 +8,9 @@ import { getDatesByYearAndWeek, getDayFromDate } from "@/utils/dates";
 import { GetMenuAction, UpdateMenuAction } from "@/actions/menu";
 
 import type { Date, Menu, Restaurant } from "@/types";
+import useSWR from "swr";
+
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function MenuEditor({
   restaurant,
@@ -17,6 +20,7 @@ export default function MenuEditor({
   date: Date;
 }) {
   const form = useForm<Menu>();
+  const data = useSWR(fetcher);
 
   useEffect(() => {
     const fetcher = async () => {
@@ -44,20 +48,22 @@ export default function MenuEditor({
 
   return (
     <form
-      className="flex flex-col items-start"
+      className="flex flex-col"
       action={() => form.handleSubmit((data) => UpdateMenuAction(data, date))()}
     >
-      {getDatesByYearAndWeek(date.year, date.week).map((date) => (
-        <section key={date} className="mb-4">
-          <header className="mb-2">
-            <h2 className="text-zinc-900 font-bold uppercase">
-              {getDayFromDate(date)}
-            </h2>
-          </header>
+      <section className="flex flex-col gap-11">
+        {getDatesByYearAndWeek(date.year, date.week).map((date) => (
+          <section key={date} className="mb-4">
+            <header className="mb-2">
+              <h2 className="text-zinc-900 font-bold uppercase">
+                {getDayFromDate(date)}
+              </h2>
+            </header>
 
-          <MenuField form={form} id={date} />
-        </section>
-      ))}
+            <MenuField form={form} id={date} />
+          </section>
+        ))}
+      </section>
 
       <input type="submit" />
     </form>

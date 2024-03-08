@@ -10,9 +10,10 @@ export default async function Page() {
   const restaurant = await getRestaurantFromUser(user.id);
 
   return (
-    <section>
+    <section className="min-h-[calc(100vh+1px)]">
+      {" "}
+      {/*style={{ minHeight: "calc(100vh + 1px)" }}> */}
       <UserToolbar user={user} />
-
       <AnimatePresence>
         {!restaurant && (
           <MotionArticle className="mt-4" exit={{ opacity: 0 }}>
