@@ -4,8 +4,8 @@ import { revalidatePath } from "next/cache";
 
 import { getUser } from "@/utils/user";
 import { getRestaurantFromUser } from "@/services/restaurants";
-import type { Menu, Date } from "@/types";
-import { upsertMenu } from "@/services/menus";
+import { getMenuByRestaurantIdAndDate, upsertMenu } from "@/services/menus";
+import type { Menu, Date, Restaurant, MenuEntry } from "@/types";
 
 export async function UpdateMenuAction(menu: Menu, date: Date) {
   const user = await getUser();
@@ -15,4 +15,11 @@ export async function UpdateMenuAction(menu: Menu, date: Date) {
     await upsertMenu(restaurant, date, menu);
     revalidatePath("/manage");
   }
+}
+
+export async function GetMenuAction(
+  restaurantId: Restaurant["id"],
+  date: Date
+): Promise<MenuEntry> {
+  return (await getMenuByRestaurantIdAndDate(restaurantId, date)) as MenuEntry;
 }

@@ -5,11 +5,15 @@ import { roles } from "@/constants";
 
 export type Invite = typeof invites.$inferSelect;
 export type Restaurant = typeof restaurants.$inferSelect;
-export type MenuEntry = typeof menus.$inferSelect;
 export type Roles = (typeof roles)[number];
 
 export type Municipal = string;
 export type Municipalities = Municipal[];
+
+export type Date = {
+  year: number;
+  week: number;
+};
 
 export type Menu = Record<
   string,
@@ -22,7 +26,6 @@ export type Menu = Record<
   }
 >;
 
-export type Date = {
-  year: number;
-  week: number;
+export type MenuEntry = Omit<typeof menus.$inferSelect, "data"> & {
+  data: Menu;
 };
