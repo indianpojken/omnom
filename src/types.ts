@@ -1,9 +1,11 @@
 import { invites } from "@/schemas/invites";
 import { restaurants } from "./schemas/restaurants";
+import { menus } from "./schemas/menus";
 import { roles } from "@/constants";
 
 export type Invite = typeof invites.$inferSelect;
 export type Restaurant = typeof restaurants.$inferSelect;
+export type MenuEntry = typeof menus.$inferSelect;
 export type Roles = (typeof roles)[number];
 
 export type Municipal = string;
@@ -19,3 +21,8 @@ export type Menu = Record<
     }[];
   }
 >;
+
+export type Date = {
+  year: number;
+  week: number;
+};

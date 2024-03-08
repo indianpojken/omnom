@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import weekOfYear from "dayjs/plugin/weekOfYear";
 import weekday from "dayjs/plugin/weekday";
 import dayjsLocaleSV from "dayjs/locale/sv";
+import type { Date } from "@/types";
 
 dayjs.extend(weekOfYear);
 dayjs.locale(dayjsLocaleSV);
@@ -23,6 +24,10 @@ export function getDatesByYearAndWeek(year: number, week: number): string[] {
 
 export function getDatesFromWeek(week: number): string[] {
   return getDatesByYearAndWeek(dayjs().year(), week);
+}
+
+export function formatYearAndWeek(date: Date) {
+  return `${date.year}-W${date.week}`;
 }
 
 export { dayjs };

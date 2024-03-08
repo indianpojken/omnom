@@ -3,10 +3,7 @@ import { icons } from "@/components/Form/icons";
 
 import { dayjs } from "@/utils/dates";
 
-type Date = {
-  year: number;
-  week: number;
-};
+import { Date } from "@/types";
 
 export default function WeekSelector({
   callback,

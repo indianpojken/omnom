@@ -4,13 +4,10 @@ import { getRestaurantFromUser } from "@/services/restaurants";
 import CreateRestaurant from "@/components/Forms/CreateRestaurant";
 import { AnimatePresence, MotionArticle } from "@/components/Motion";
 import ManageMenu from "@/components/Forms/ManageMenu";
-import { getDatesByYearAndWeek, getCurrentWeek } from "@/utils/dates";
 
 export default async function Page() {
   const user = await getUser();
   const restaurant = await getRestaurantFromUser(user.id);
-
-  const dates = getDatesByYearAndWeek(2024, 10);
 
   return (
     <section>
@@ -31,7 +28,7 @@ export default async function Page() {
         )}
 
         <article className="mt-2">
-          {restaurant && <ManageMenu dates={dates} />}
+          {restaurant && <ManageMenu restaurant={restaurant} />}
         </article>
       </AnimatePresence>
     </section>
