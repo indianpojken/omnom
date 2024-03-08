@@ -34,7 +34,7 @@ export default function MenuField({
               className="flex flex-col sm:flex-row gap-4"
             >
               <article className="flex flex-col flex-1 last:mb-2">
-                <section className="flex gap-4 mb-4">
+                <section className="flex flex-col sm:flex-row gap-4 mb-4">
                   <article className="flex flex-1">
                     <aside className="flex justify-center item-center bg-amber-100 border-amber-900 rounded-s-md border-b-2 p-2 text-amber-900">
                       {icons["food"]}
@@ -66,7 +66,7 @@ export default function MenuField({
                     />
                     <motion.label
                       whileTap={{ scale: 0.9 }}
-                      className="cursor-pointer flex text-nowrap transition-colors select-none p-2 rounded-md text-xs uppercase font-semibold bg-green-300 text-green-900 peer-checked:bg-green-700 peer-checked:text-green-50 hover:bg-green-700 hover:text-green-50 border-b-2 border-green-900"
+                      className="flex-1 sm:flex-0 justify-center cursor-pointer flex text-nowrap transition-colors select-none p-2 rounded-md text-xs uppercase font-semibold bg-green-300 text-green-900 peer-checked:bg-green-700 peer-checked:text-green-50 hover:bg-green-700 hover:text-green-50 border-b-2 border-green-900"
                       htmlFor={`${id}.items.${index}.vegetarian`}
                     >
                       <p className="my-auto">Vegetarisk</p>
