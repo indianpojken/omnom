@@ -3,6 +3,7 @@ export const roles = ["admin", "owner"] as const;
 export const allergies = [
   "Celiaki",
   "Fisk",
+  "Fläsk",
   "Fröer",
   "Laktos",
   "Lupin",
