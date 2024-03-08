@@ -57,7 +57,7 @@ export default function MenuEditor({
           ))}
         </section>
 
-        <SubmitButton className="p-4">Spara</SubmitButton>
+        <SubmitButton className="p-4 mb-4">Spara</SubmitButton>
       </motion.form>
     </AnimatePresence>
   );
