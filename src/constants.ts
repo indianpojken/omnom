@@ -1,5 +1,22 @@
 export const roles = ["admin", "owner"] as const;
 
+export const allergies = [
+  "Celiaki",
+  "Fisk",
+  "Fröer",
+  "Laktos",
+  "Lupin",
+  "Mandel",
+  "Nötter",
+  "Selleri",
+  "Senap",
+  "Skaldjur",
+  "Soja",
+  "Spannmål",
+  "Sulfiter",
+  "Ägg",
+];
+
 export const municipalities = [
   "Ale",
   "Alingsås",
