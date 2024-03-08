@@ -6,6 +6,12 @@ import { restaurants } from "@/schemas/restaurants";
 import type { User } from "@supabase/supabase-js";
 import type { Restaurant } from "@/types";
 
+export async function getRestaurantFromUser(id: User["id"]) {
+  return await database.query.restaurants.findFirst({
+    where: eq(restaurants.owner, id),
+  });
+}
+
 export async function createRestaurant(
   restaurant: Omit<Restaurant, "id">
 ): Promise<Restaurant> {
@@ -15,12 +21,6 @@ export async function createRestaurant(
     .returning();
 
   return createdRestaurant;
-}
-
-export async function getRestaurantFromUser(id: User["id"]) {
-  return await database.query.restaurants.findFirst({
-    where: eq(restaurants.owner, id),
-  });
 }
 
 export async function getRestaurant(id: Restaurant["id"]) {
@@ -33,6 +33,19 @@ export async function getRestaurant(id: Restaurant["id"]) {
   } else {
     throw new Error(`Failed to get restaurant: no restaurant by id '${id}'.`);
   }
+}
+
+export async function updateRestaurant(
+  restaurant: Restaurant,
+  data: Omit<Restaurant, "id">
+): Promise<Restaurant> {
+  const [updatedRestaurant] = await database
+    .update(restaurants)
+    .set(data)
+    .where(eq(restaurants.id, restaurant.id))
+    .returning();
+
+  return updatedRestaurant;
 }
 
 export async function getAllRestaurants(): Promise<Restaurant[]> {

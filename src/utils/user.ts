@@ -8,9 +8,7 @@ export async function getUser(): Promise<User> {
 
   const { data, error } = await supabase.auth.getUser();
 
-  if (error) {
-    // if (error || !data?.user) {
-    console.log(error);
+  if (error || !data?.user) {
     throw new Error("Unauthorized.");
   }
 

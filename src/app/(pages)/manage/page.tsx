@@ -1,7 +1,7 @@
 import { getUser } from "@/utils/user";
 import UserToolbar from "@/components/UserToolbar";
 import { getRestaurantFromUser } from "@/services/restaurants";
-import CreateRestaurant from "@/components/Forms/CreateRestaurant";
+import EditRestaurant from "@/components/Forms/editRestaurant";
 import { AnimatePresence, MotionArticle } from "@/components/Motion";
 import ManageMenu from "@/components/Forms/ManageMenu";
 
@@ -11,9 +11,7 @@ export default async function Page() {
 
   return (
     <section className="min-h-[calc(100vh+1px)]">
-      {" "}
-      {/*style={{ minHeight: "calc(100vh + 1px)" }}> */}
-      <UserToolbar user={user} />
+      <UserToolbar user={user} restaurant={restaurant} />
       <AnimatePresence>
         {!restaurant && (
           <MotionArticle className="mt-4" exit={{ opacity: 0 }}>
@@ -24,11 +22,11 @@ export default async function Page() {
               </p>
             </header>
 
-            <CreateRestaurant />
+            <EditRestaurant />
           </MotionArticle>
         )}
 
-        <article className="mt-2">
+        <article className="mt-4">
           {restaurant && <ManageMenu restaurant={restaurant} />}
         </article>
       </AnimatePresence>
