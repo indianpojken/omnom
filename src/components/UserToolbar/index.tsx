@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import EditRestaurant from "../Forms/editRestaurant";
+import EditRestaurant from "../Forms/EditRestaurant";
 import { useState } from "react";
 import { icons } from "../Form/icons";
 import { Restaurant } from "@/types";
