@@ -36,7 +36,7 @@ export default function MenuField({
               <article className="flex flex-col flex-1 last:mb-2">
                 <section className="flex flex-col sm:flex-row gap-4 mb-4">
                   <article className="flex flex-1">
-                    <aside className="flex justify-center item-center bg-amber-100 border-amber-900 rounded-s-md border-b-2 p-2 text-amber-900">
+                    <aside className="flex justify-center bg-amber-100 border-amber-900 rounded-s-md border-b-2 p-2 text-amber-900">
                       {icons["food"]}
                     </aside>
 

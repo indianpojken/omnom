@@ -1,7 +1,7 @@
 import { getUser } from "@/utils/user";
 import UserToolbar from "@/components/UserToolbar";
 import { getRestaurantFromUser } from "@/services/restaurants";
-import EditRestaurant from "@/components/Forms/EditRestaurant";
+import EditRestaurant from "@/components/Forms/editRestaurant";
 import { AnimatePresence, MotionArticle } from "@/components/Motion";
 import ManageMenu from "@/components/Forms/ManageMenu";
 
