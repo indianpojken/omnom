@@ -1,19 +1,22 @@
 "use client";
-
-import { useFormState } from "react-dom";
+import { useState } from "react";
+import { motion } from "framer-motion";
 
 import { municipalities } from "@/constants";
 import Field from "@/components/Form/Field";
 import SubmitButton from "@/components/Form/SubmitButton";
-import { createRestaurantAction } from "@/actions/restaurant";
+import {
+  createRestaurantAction,
+  updateRestaurantAction,
+} from "@/actions/restaurant";
+import { Restaurant } from "@/types";
 
-export default function CreateRestaurant({ owner }: { owner: string }) {
-  const createRestaurantActionWithOwner = createRestaurantAction.bind(
-    null,
-    owner
-  );
-
-  const [sate, action] = useFormState(createRestaurantActionWithOwner, null);
+export default function EditRestaurant({
+  restaurant,
+}: {
+  restaurant?: Restaurant;
+}) {
+  const action = restaurant ? updateRestaurantAction : createRestaurantAction;
 
   return (
     <form action={action} className="flex flex-col gap-4">
@@ -23,19 +26,38 @@ export default function CreateRestaurant({ owner }: { owner: string }) {
         placeholder="Restaurangens namn"
         required
         icon="restaurant"
+        defaultValue={restaurant?.name}
       />
+
+      <article className="flex-1 mt-2 flex rounded-md overflow-hidden border-b-2 border-amber-900">
+        <input
+          id="price"
+          name="price"
+          className="text-right flex-1 p-2 bg-amber-50 outline-none"
+          type="text"
+          pattern="\d*"
+          defaultValue={restaurant?.price ?? "0"}
+          required
+        />
+
+        <aside className="flex justify-center items-center font-bold  px-2 bg-amber-100 text-amber-900">
+          SEK
+        </aside>
+      </article>
 
       <select
         className="rounded-md border-b-2 border-amber-900 text-amber-950 bg-amber-50 p-3 outline-0 placeholder:text-zinc-400 focus:outline"
         name="municipal"
         id="municipal"
       >
-        <option className="font-sans text-amber-950">Välj kommun</option>
+        {restaurant?.municipal ?? (
+          <option className="font-sans text-amber-950">Välj kommun</option>
+        )}
         {municipalities.map((municipal) => (
           <option
             className="font-sans text-amber-950 selection:bg-amber-950 hover:bg-amber-950"
             key={municipal}
-            defaultValue={municipal}
+            defaultValue={restaurant?.municipal ?? municipal}
           >
             {municipal}
           </option>
@@ -46,7 +68,7 @@ export default function CreateRestaurant({ owner }: { owner: string }) {
         <Field
           id="lunchHoursOpening"
           type="time"
-          defaultValue="11:00"
+          defaultValue={restaurant?.lunchHoursOpening ?? "11:00"}
           required
           icon="clock"
         />
@@ -54,7 +76,7 @@ export default function CreateRestaurant({ owner }: { owner: string }) {
         <Field
           id="lunchHoursClosing"
           type="time"
-          defaultValue="13:00"
+          defaultValue={restaurant?.lunchHoursClosing ?? "13:00"}
           required
           icon="clock"
         />
@@ -67,6 +89,7 @@ export default function CreateRestaurant({ owner }: { owner: string }) {
           placeholder="Address"
           required
           icon="location"
+          defaultValue={restaurant?.address ?? ""}
         />
 
         <Field
@@ -75,6 +98,7 @@ export default function CreateRestaurant({ owner }: { owner: string }) {
           placeholder="Postnummer"
           required
           icon="number"
+          defaultValue={restaurant?.zipCode ?? ""}
         />
       </section>
 
@@ -84,9 +108,16 @@ export default function CreateRestaurant({ owner }: { owner: string }) {
           type="text"
           placeholder="Telefonnummer"
           icon="phone"
+          defaultValue={restaurant?.phoneNumber ?? ""}
         />
 
-        <Field id="website" type="text" placeholder="Webbsida" icon="url" />
+        <Field
+          id="website"
+          type="text"
+          placeholder="Webbsida"
+          icon="url"
+          defaultValue={restaurant?.website ?? ""}
+        />
       </section>
 
       <SubmitButton>Spara</SubmitButton>

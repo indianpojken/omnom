@@ -1,21 +1,17 @@
 import { getUser } from "@/utils/user";
 import UserToolbar from "@/components/UserToolbar";
-import ManageRestaurants from "@/components/ManageRestaurants";
 import { getRestaurantFromUser } from "@/services/restaurants";
-import CreateRestaurant from "@/components/Forms/CreateRestaurant";
+import EditRestaurant from "@/components/Forms/EditRestaurant";
 import { AnimatePresence, MotionArticle } from "@/components/Motion";
+import ManageMenu from "@/components/Forms/ManageMenu";
 
 export default async function Page() {
   const user = await getUser();
   const restaurant = await getRestaurantFromUser(user.id);
 
-  console.log(user.id);
-  console.log(restaurant);
-
   return (
-    <section>
-      <UserToolbar user={user} />
-
+    <section className="min-h-[calc(100vh+1px)]">
+      <UserToolbar user={user} restaurant={restaurant} />
       <AnimatePresence>
         {!restaurant && (
           <MotionArticle className="mt-4" exit={{ opacity: 0 }}>
@@ -26,9 +22,13 @@ export default async function Page() {
               </p>
             </header>
 
-            <CreateRestaurant owner={user.id} />
+            <EditRestaurant />
           </MotionArticle>
         )}
+
+        <article className="mt-4">
+          {restaurant && <ManageMenu restaurant={restaurant} />}
+        </article>
       </AnimatePresence>
     </section>
   );

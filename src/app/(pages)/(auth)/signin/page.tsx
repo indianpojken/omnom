@@ -2,7 +2,7 @@ import SignIn from "@/components/Forms/SignIn";
 
 export default async function Page() {
   return (
-    <article className="w-96 gap-4 overflow-hidden">
+    <article className="m-auto items-center w-96">
       <SignIn />
     </article>
   );

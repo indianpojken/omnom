@@ -3,7 +3,8 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-import { createClient } from "@/utils/supabase/server";
+import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
+import { cookies } from "next/headers";
 
 type Credentials = { email: string; password: string };
 
@@ -23,7 +24,7 @@ export async function SignUpAction(
   prevState: string | null | undefined,
   formData: FormData
 ) {
-  const supabase = createClient();
+  const supabase = createServerActionClient({ cookies });
   const data = getData(formData);
 
   const { error } = await supabase.auth.signUp({
@@ -46,7 +47,7 @@ export async function SignInAction(
   prevState: string | null | undefined,
   formData: FormData
 ) {
-  const supabase = createClient();
+  const supabase = createServerActionClient({ cookies });
   const data = getData(formData);
 
   const { error } = await supabase.auth.signInWithPassword(data);
