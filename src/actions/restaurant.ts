@@ -12,6 +12,7 @@ import { revalidatePath } from "next/cache";
 function getData(formData: FormData): Omit<Restaurant, "id" | "owner"> {
   return {
     name: formData.get("name") as string,
+    price: Number(formData.get("price")),
     municipal: formData.get("municipal") as string,
     address: formData.get("address") as string,
     zipCode: formData.get("zipCode") as string,

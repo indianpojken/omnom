@@ -1,4 +1,6 @@
 "use client";
+import { useState } from "react";
+import { motion } from "framer-motion";
 
 import { municipalities } from "@/constants";
 import Field from "@/components/Form/Field";
@@ -26,6 +28,22 @@ export default function EditRestaurant({
         icon="restaurant"
         defaultValue={restaurant?.name}
       />
+
+      <article className="flex-1 mt-2 flex rounded-md overflow-hidden border-b-2 border-amber-900">
+        <input
+          id="price"
+          name="price"
+          className="text-right flex-1 p-2 bg-amber-50 outline-none"
+          type="text"
+          pattern="\d*"
+          defaultValue={restaurant?.price ?? "0"}
+          required
+        />
+
+        <aside className="flex justify-center items-center font-bold  px-2 bg-amber-100 text-amber-900">
+          SEK
+        </aside>
+      </article>
 
       <select
         className="rounded-md border-b-2 border-amber-900 text-amber-950 bg-amber-50 p-3 outline-0 placeholder:text-zinc-400 focus:outline"
