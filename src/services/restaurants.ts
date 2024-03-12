@@ -1,4 +1,4 @@
-import { and, eq } from "drizzle-orm";
+import { and, eq, ilike } from "drizzle-orm";
 
 import { database } from "@/services/database";
 import { restaurants } from "@/schemas/restaurants";
@@ -39,7 +39,7 @@ export async function getRestaurantsByMunicipal(
   municipal: Restaurant["municipal"]
 ) {
   return await database.query.restaurants.findMany({
-    where: eq(restaurants.municipal, municipal),
+    where: ilike(restaurants.municipal, municipal),
   });
 }
 

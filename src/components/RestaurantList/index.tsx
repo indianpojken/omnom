@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 import { icons } from "@/components/Form/icons";
 import { dayjs } from "@/utils/dates";
@@ -7,11 +8,19 @@ import MenuItems from "./MenuItems";
 
 export default function RestaurantList({
   restaurants,
+  date,
 }: {
+  date?: string;
   restaurants: Array<Restaurant & { menu: Menu }>;
 }) {
   return (
-    <section className="flex flex-col gap-10">
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="flex flex-col gap-10"
+      key={date}
+    >
       {restaurants.map((restaurant) => (
         <article className="flex flex-col" key={restaurant.id}>
           <header className="flex justify-between items-end flex-row">
@@ -67,10 +76,10 @@ export default function RestaurantList({
           </section>
 
           <MenuItems
-            items={restaurant.menu[dayjs().format("YYYY-MM-DD")].items}
+            items={restaurant.menu[date ?? dayjs().format("YYYY-MM-DD")].items}
           />
         </article>
       ))}
-    </section>
+    </motion.section>
   );
 }

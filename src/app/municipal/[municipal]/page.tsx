@@ -1,4 +1,4 @@
-import RestaurantList from "@/components/RestaurantList";
+import Menu from "@/components/Menu";
 import { getRestaurantsWithMenu } from "@/services/menus";
 import { getRestaurantsByMunicipal } from "@/services/restaurants";
 import { getCurrentDate, getDatesFromDate, dayjs } from "@/utils/dates";
@@ -18,9 +18,11 @@ export default async function Page({
 
   return (
     <section>
-      <header className="text-xl font-bold uppercase">{municipal}</header>
+      <header className="text-xl font-bold uppercase">
+        Restauranger i {municipal}
+      </header>
 
-      <RestaurantList restaurants={restaurants} />
+      <Menu restaurants={restaurants} dates={dates} />
     </section>
   );
 }
