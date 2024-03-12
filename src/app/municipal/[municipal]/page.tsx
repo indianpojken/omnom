@@ -14,12 +14,13 @@ export default async function Page({
     getCurrentDate()
   );
 
+  const currentDate = getCurrentDate();
   const dates = getDatesFromDate(getCurrentDate());
 
   return (
     <section>
       <header className="text-xl font-bold uppercase">
-        Restauranger i {municipal}
+        {municipal} V. {currentDate.week} ({currentDate.year})
       </header>
 
       <Menu restaurants={restaurants} dates={dates} />
