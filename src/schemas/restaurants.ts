@@ -1,4 +1,4 @@
-import { pgTable, text } from "drizzle-orm/pg-core";
+import { integer, pgTable, text } from "drizzle-orm/pg-core";
 import { createId } from "@paralleldrive/cuid2";
 
 export const restaurants = pgTable("restaurants", {
@@ -14,4 +14,5 @@ export const restaurants = pgTable("restaurants", {
   lunchHoursClosing: text("lunchHoursClosing").notNull(),
   phoneNumber: text("phoneNumber"),
   website: text("website"),
+  price: integer("price").notNull(),
 });
