@@ -19,7 +19,7 @@ export default function MunicipalList({
 
           <section id={`${letter}`} className="flex flex-wrap gap-4 mt-4">
             {groupedMunicipalities[letter].map((municipal) => (
-              <Link key={municipal} href="/">
+              <Link key={municipal} href={`/municipal/${municipal}`}>
                 <article className="transition-colors self-start text-amber-900 hover:text-amber-100 bg-amber-50 hover:bg-amber-950 p-2 rounded-md">
                   {municipal}
                 </article>

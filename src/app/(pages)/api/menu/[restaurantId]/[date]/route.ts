@@ -1,6 +1,6 @@
 import { getMenuByRestaurantIdAndDate } from "@/services/menus";
 import { Date } from "@/types";
-import { getDatesByYearAndWeek } from "@/utils/dates";
+import { getDatesFromDate } from "@/utils/dates";
 
 export const dynamic = "force-dynamic";
 
@@ -32,7 +32,7 @@ export async function GET(
     if (menu) {
       return Response.json({ menu: menu.data });
     } else {
-      const backup = getDatesByYearAndWeek(date.year, date.week).reduce(
+      const backup = getDatesFromDate(date).reduce(
         (previous, date) => ({
           ...previous,
           [date]: {

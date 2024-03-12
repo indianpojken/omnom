@@ -12,8 +12,8 @@ export function getDayFromDate(date: string): string {
   return dayjs(date).format("dddd");
 }
 
-export function getDatesByYearAndWeek(year: number, week: number): string[] {
-  const weekData = dayjs().year(year).week(week);
+export function getDatesFromDate(date: Date): string[] {
+  const weekData = dayjs().year(date.year).week(date.week);
   const start = weekData.startOf("week");
   const end = weekData.endOf("week");
 
@@ -23,11 +23,18 @@ export function getDatesByYearAndWeek(year: number, week: number): string[] {
 }
 
 export function getDatesFromWeek(week: number): string[] {
-  return getDatesByYearAndWeek(dayjs().year(), week);
+  return getDatesFromDate({ year: dayjs().year(), week });
 }
 
-export function formatYearAndWeek(date: Date) {
+export function formatDate(date: Date) {
   return `${date.year}-W${date.week}`;
+}
+
+export function getCurrentDate(): Date {
+  return {
+    year: dayjs().year(),
+    week: dayjs().week(),
+  };
 }
 
 export { dayjs };

@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import useSWR from "swr";
 
 import MenuField from "@/components/Form/MenuField";
-import { getDatesByYearAndWeek, getDayFromDate } from "@/utils/dates";
+import { getDatesFromDate, getDayFromDate } from "@/utils/dates";
 import { UpdateMenuAction } from "@/actions/menu";
 
 import type { Date, Menu, Restaurant } from "@/types";
@@ -44,7 +44,7 @@ export default function MenuEditor({
         }
       >
         <section className="flex flex-col gap-11">
-          {getDatesByYearAndWeek(date.year, date.week).map((date) => (
+          {getDatesFromDate(date).map((date) => (
             <section key={date} className="mb-4">
               <header className="mb-2">
                 <h2 className="text-zinc-900 font-bold uppercase">
