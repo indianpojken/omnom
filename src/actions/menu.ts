@@ -7,12 +7,12 @@ import { getRestaurantFromUser } from "@/services/restaurants";
 import { getMenuByRestaurantIdAndDate, upsertMenu } from "@/services/menus";
 import type { Menu, Date, Restaurant, MenuEntry } from "@/types";
 
-export async function UpdateMenuAction(menu: Menu, date: Date) {
+export async function UpdateMenuAction(menu: Menu, yearAndWeek: Date) {
   const user = await getUser();
   const restaurant = await getRestaurantFromUser(user.id);
 
   if (user && user.id === restaurant?.owner) {
-    await upsertMenu(restaurant, date, menu);
+    await upsertMenu(restaurant, yearAndWeek, menu);
     revalidatePath("/manage");
   }
 }

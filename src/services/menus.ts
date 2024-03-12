@@ -2,7 +2,7 @@ import { and, eq } from "drizzle-orm";
 
 import { database } from "@/services/database";
 import { menus } from "@/schemas/menus";
-import { formatYearAndWeek } from "@/utils/dates";
+import { formatDate } from "@/utils/dates";
 
 import { Menu, Restaurant, Date, MenuEntry } from "@/types";
 
@@ -13,7 +13,7 @@ export async function getMenuByRestaurantIdAndDate(
   const menu = await database.query.menus.findFirst({
     where: and(
       eq(menus.restaurant, restaurantId),
-      eq(menus.yearAndWeek, formatYearAndWeek(date))
+      eq(menus.yearAndWeek, formatDate(date))
     ),
   });
 
@@ -39,4 +39,21 @@ export async function upsertMenu(
     .returning();
 
   return menu;
+}
+
+export async function getRestaurantsWithMenu(
+  restaurants: Restaurant[],
+  date: Date
+): Promise<Array<Restaurant & { menu: Menu }>> {
+  return Promise.all(
+    restaurants.map(async (restaurant) => {
+      const menuItem = await getMenuByRestaurantIdAndDate(restaurant.id, date);
+      const menu = menuItem.data as Menu;
+
+      return {
+        ...restaurant,
+        menu,
+      };
+    })
+  );
 }
