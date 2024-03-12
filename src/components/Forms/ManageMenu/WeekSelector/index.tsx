@@ -3,12 +3,12 @@ import { icons } from "@/components/Form/icons";
 
 import { dayjs } from "@/utils/dates";
 
-import { YearWeek } from "@/types";
+import { Date } from "@/types";
 
 export default function WeekSelector({
   callback,
 }: {
-  callback: (date: YearWeek) => void;
+  callback: (date: Date) => void;
 }) {
   const [date, setDate] = useState({
     year: dayjs().year(),

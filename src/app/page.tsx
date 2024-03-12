@@ -5,13 +5,18 @@ import { municipalities } from "@/constants";
 import MunicipalList from "@/components/MunicipalList";
 import LetterNavigator from "@/components/LetterNavigator";
 import Logo from "@/components/Logo/Logo";
+import { MotionMain } from "@/components/Motion";
 
 export default async function Page() {
   const municipalitiesWithRestaurants =
     await getAllMunicipalitiesWithRestaurants();
 
   return (
-    <main className="flex mx-auto min-h-screen flex-col px-6 py-10 max-w-[800px]">
+    <MotionMain
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="flex mx-auto min-h-screen flex-col px-6 py-10 max-w-[800px]"
+    >
       <header>
         <Logo />
       </header>
@@ -30,6 +35,6 @@ export default async function Page() {
       <section className="mt-10">
         <MunicipalList municipalities={municipalitiesWithRestaurants} />
       </section>
-    </main>
+    </MotionMain>
   );
 }
