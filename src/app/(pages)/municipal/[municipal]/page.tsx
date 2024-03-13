@@ -1,4 +1,5 @@
 import Menu from "@/components/Menu";
+import { MotionSection } from "@/components/Motion";
 import { getRestaurantsByMunicipal } from "@/services/restaurants";
 
 export default async function Page({
@@ -10,10 +11,15 @@ export default async function Page({
   const restaurants = await getRestaurantsByMunicipal(municipal);
 
   return (
-    <section className="flex flex-col">
-      <header className="text-xl font-bold uppercase mb-2">{municipal}</header>
+    <MotionSection
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      className="flex flex-col"
+    >
+      <header className="font-bold uppercase mb-2">{municipal}</header>
 
       <Menu restaurants={restaurants} />
-    </section>
+    </MotionSection>
   );
 }
