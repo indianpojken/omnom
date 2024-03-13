@@ -1,4 +1,4 @@
-import { and, eq, ilike } from "drizzle-orm";
+import { eq, ilike } from "drizzle-orm";
 
 import { database } from "@/services/database";
 import { restaurants } from "@/schemas/restaurants";
@@ -60,13 +60,10 @@ export async function getAllRestaurants(): Promise<Restaurant[]> {
   return await database.query.restaurants.findMany();
 }
 
-export async function deleteRestaurant(
-  owner: Restaurant["owner"],
-  id: Restaurant["id"]
-) {
+export async function deleteRestaurant(id: Restaurant["id"]) {
   const [restaurant] = await database
     .delete(restaurants)
-    .where(and(eq(restaurants.owner, owner), eq(restaurants.id, id)))
+    .where(eq(restaurants.id, id))
     .returning();
 
   if (restaurant) {

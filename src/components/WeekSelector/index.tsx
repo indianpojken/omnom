@@ -40,7 +40,7 @@ export default function WeekSelector({
   };
 
   const buttonStyle =
-    "flex flex-1 justify-center px-4 py-2 hover:bg-amber-900 hover:text-amber-100 transition-colors";
+    "flex flex-1 justify-center px-4 py-2 hover:bg-amber-900 active:bg-amber-950 hover:text-amber-100 transition-colors";
 
   return (
     <>
