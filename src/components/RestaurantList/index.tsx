@@ -30,7 +30,11 @@ export default function RestaurantList({
         date ?? getCurrentDate()
       );
 
-      setData(restaurantsWithMenu);
+      setData(
+        restaurantsWithMenu.sort((a, b) =>
+          a.name[0].toUpperCase().localeCompare(b.name[0].toUpperCase())
+        )
+      );
     };
 
     fetcher();
