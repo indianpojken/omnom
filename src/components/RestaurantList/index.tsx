@@ -1,27 +1,50 @@
+"use client";
+
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 import { icons } from "@/components/Form/icons";
-import { dayjs } from "@/utils/dates";
-import type { Menu, Restaurant } from "@/types";
+import { dayjs, getCurrentDate } from "@/utils/dates";
 import MenuItems from "./MenuItems";
+import type { Menu, Restaurant, Date } from "@/types";
+import { getRestaurantsWithMenu } from "@/services/menus";
 
 export default function RestaurantList({
   restaurants,
   date,
+  day,
 }: {
-  date?: string;
-  restaurants: Array<Restaurant & { menu: Menu }>;
+  restaurants: Restaurant[];
+  date?: Date;
+  day: string;
 }) {
+  const [data, setData] = useState<Array<Restaurant & { menu: Menu }> | null>(
+    null
+  );
+
+  useEffect(() => {
+    const fetcher = async () => {
+      const restaurantsWithMenu = await getRestaurantsWithMenu(
+        restaurants,
+        date ?? getCurrentDate()
+      );
+
+      setData(restaurantsWithMenu);
+    };
+
+    fetcher();
+  }, [day]);
+
   return (
     <motion.section
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="flex flex-col gap-10"
-      key={date}
+      className="flex flex-col gap-10 mt-4"
+      key={day}
     >
-      {restaurants.map((restaurant) => (
+      {data?.map((restaurant) => (
         <article className="flex flex-col" key={restaurant.id}>
           <header className="flex justify-between items-end flex-row">
             <h2 className="text-zinc-900 font-bold uppercase">
@@ -44,7 +67,7 @@ export default function RestaurantList({
               </article>
             </section>
 
-            <section className="flex flex-0 gap-4 justify-around sm:justify-normal">
+            <section className="flex flex-0 gap-4 justify-around sm:justify-normal bg-amber-100 sm:bg-white rounded-md">
               {restaurant.website && (
                 <Link
                   className="transition-colors text-amber-900 hover:text-amber-100 bg-amber-100 hover:bg-amber-950 p-2 rounded-md"
@@ -75,9 +98,15 @@ export default function RestaurantList({
             </section>
           </section>
 
-          <MenuItems
-            items={restaurant.menu[date ?? dayjs().format("YYYY-MM-DD")].items}
-          />
+          {Object.keys(restaurant.menu).includes(day) && (
+            <>
+              {restaurant.menu[day].items.length ? (
+                <MenuItems items={restaurant.menu[day].items} />
+              ) : (
+                <p>Här var det tomt...</p>
+              )}
+            </>
+          )}
         </article>
       ))}
     </motion.section>

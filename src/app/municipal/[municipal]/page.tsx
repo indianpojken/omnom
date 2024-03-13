@@ -1,7 +1,5 @@
 import Menu from "@/components/Menu";
-import { getRestaurantsWithMenu } from "@/services/menus";
 import { getRestaurantsByMunicipal } from "@/services/restaurants";
-import { getCurrentDate, getDatesFromDate, dayjs } from "@/utils/dates";
 
 export default async function Page({
   params,
@@ -9,21 +7,13 @@ export default async function Page({
   params: { municipal: string };
 }) {
   const municipal = decodeURIComponent(params.municipal);
-  const restaurants = await getRestaurantsWithMenu(
-    await getRestaurantsByMunicipal(municipal),
-    getCurrentDate()
-  );
-
-  const currentDate = getCurrentDate();
-  const dates = getDatesFromDate(getCurrentDate());
+  const restaurants = await getRestaurantsByMunicipal(municipal);
 
   return (
-    <section>
-      <header className="text-xl font-bold uppercase">
-        {municipal} V. {currentDate.week} ({currentDate.year})
-      </header>
+    <section className="flex flex-col">
+      <header className="text-xl font-bold uppercase mb-2">{municipal}</header>
 
-      <Menu restaurants={restaurants} dates={dates} />
+      <Menu restaurants={restaurants} />
     </section>
   );
 }

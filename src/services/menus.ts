@@ -1,8 +1,10 @@
+"use server";
+
 import { and, eq } from "drizzle-orm";
 
 import { database } from "@/services/database";
 import { menus } from "@/schemas/menus";
-import { formatDate } from "@/utils/dates";
+import { formatDate, getDatesFromDate } from "@/utils/dates";
 
 import { Menu, Restaurant, Date, MenuEntry } from "@/types";
 
@@ -48,7 +50,15 @@ export async function getRestaurantsWithMenu(
   return Promise.all(
     restaurants.map(async (restaurant) => {
       const menuItem = await getMenuByRestaurantIdAndDate(restaurant.id, date);
-      const menu = menuItem.data as Menu;
+      const menu =
+        (menuItem?.data as Menu) ??
+        (getDatesFromDate(date).reduce(
+          (previous, date) => ({
+            ...previous,
+            [date]: { items: [] },
+          }),
+          {}
+        ) as Menu);
 
       return {
         ...restaurant,

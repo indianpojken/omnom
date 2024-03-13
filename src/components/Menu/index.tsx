@@ -2,21 +2,22 @@
 
 import DaySelector from "@/components/Menu/DaySelector";
 import RestaurantList from "@/components/RestaurantList";
-import { dayjs } from "@/utils/dates";
+import { getDatesFromDate } from "@/utils/dates";
 import type { Menu, Restaurant } from "@/types";
+import WeekSelector from "../WeekSelector";
 
-export default function Menu({
-  dates,
-  restaurants,
-}: {
-  dates: string[];
-  restaurants: Array<Restaurant & { menu: Menu }>;
-}) {
+export default function Menu({ restaurants }: { restaurants: Restaurant[] }) {
   return (
     <>
-      <DaySelector dates={dates}>
-        {(date) => <RestaurantList restaurants={restaurants} date={date} />}
-      </DaySelector>
+      <WeekSelector>
+        {(date) => (
+          <DaySelector dates={getDatesFromDate(date)}>
+            {(day) => (
+              <RestaurantList restaurants={restaurants} date={date} day={day} />
+            )}
+          </DaySelector>
+        )}
+      </WeekSelector>
     </>
   );
 }
