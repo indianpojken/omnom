@@ -21,9 +21,12 @@ export default function DaySelector({
   return (
     <>
       <ol className="flex flex-wrap gap-2 justify-between my-4">
-        {dates.map((date) => (
+        {dates.map((date, index) => (
           <li className="flex flex-1" key={date}>
             <motion.button
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.07 * index }}
               whileTap={{ scale: 0.9 }}
               onClick={() => setSelectedDate(date)}
               disabled={date === selectedDate}
