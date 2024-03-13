@@ -49,6 +49,7 @@ export default function EditRestaurant({
         className="rounded-md border-b-2 border-amber-900 text-amber-950 bg-amber-50 p-3 outline-0 placeholder:text-zinc-400 focus:outline"
         name="municipal"
         id="municipal"
+        defaultValue={restaurant?.municipal}
       >
         {restaurant?.municipal ?? (
           <option className="font-sans text-amber-950">Välj kommun</option>
@@ -57,7 +58,6 @@ export default function EditRestaurant({
           <option
             className="font-sans text-amber-950 selection:bg-amber-950 hover:bg-amber-950"
             key={municipal}
-            defaultValue={restaurant?.municipal ?? municipal}
           >
             {municipal}
           </option>
