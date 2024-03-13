@@ -2,6 +2,8 @@
 
 import {
   createRestaurant,
+  deleteRestaurant,
+  getAllRestaurants,
   getRestaurantFromUser,
   updateRestaurant,
 } from "@/services/restaurants";
@@ -41,5 +43,21 @@ export async function updateRestaurantAction(formData: FormData) {
     revalidatePath("/manage");
   } else {
     throw new Error(`No restaurant found.`);
+  }
+}
+
+export async function getAllRestaurantsAction(): Promise<Restaurant[]> {
+  return await getAllRestaurants();
+}
+
+export async function removeRestaurantAction(id: Restaurant["id"]) {
+  const user = await getUser();
+  const { role } = user.user_metadata;
+
+  if (role === "admin") {
+    await deleteRestaurant(id);
+    revalidatePath("/manage");
+  } else {
+    throw new Error(`Ajabaja, det där får inte du göra!`);
   }
 }
