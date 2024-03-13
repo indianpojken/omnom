@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+
 import { icons } from "@/components/Form/icons";
-
 import { dayjs } from "@/utils/dates";
-
-import { Date } from "@/types";
+import type { Date } from "@/types";
 
 type Styles = "center" | "normal";
 
