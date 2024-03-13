@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { icons } from "@/components/Form/icons";
+import { icons } from "@/components/Icons";
 import { dayjs } from "@/utils/dates";
 import type { Date } from "@/types";
 

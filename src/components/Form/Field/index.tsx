@@ -1,6 +1,6 @@
 "use client";
 
-import { icons } from "../icons";
+import { icons } from "@/components/Icons";
 
 export default function Field({
   icon,

@@ -4,8 +4,8 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-import { icons } from "@/components/Form/icons";
-import { dayjs, getCurrentDate } from "@/utils/dates";
+import { icons } from "@/components/Icons";
+import { getCurrentDate } from "@/utils/dates";
 import MenuItems from "./MenuItems";
 import type { Menu, Restaurant, Date } from "@/types";
 import { getRestaurantsWithMenu } from "@/services/menus";

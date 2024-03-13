@@ -1,4 +1,4 @@
-import { icons } from "@/components/Form/icons";
+import { icons } from "@/components/Icons";
 import type { Menu } from "@/types";
 
 export default function MenuItems({ items }: { items: Menu[""]["items"] }) {

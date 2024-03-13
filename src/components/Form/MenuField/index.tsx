@@ -4,7 +4,7 @@ import { useFieldArray, UseFormReturn } from "react-hook-form";
 
 import { AnimatePresence, motion } from "framer-motion";
 
-import { icons } from "@/components/Form/icons";
+import { icons } from "@/components/Icons";
 import { allergies } from "@/constants";
 import type { Menu } from "@/types";
 

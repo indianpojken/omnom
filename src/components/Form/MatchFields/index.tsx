@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-import { icons } from "../icons";
+import { icons } from "@/components/Icons";
 export { useInputMatcher } from "./hook";
 
 export default function MatchFields({
