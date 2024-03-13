@@ -4,7 +4,7 @@ import { getRestaurantFromUser } from "@/services/restaurants";
 import EditRestaurant from "@/components/Forms/EditRestaurant";
 import { AnimatePresence, MotionArticle } from "@/components/Motion";
 import ManageMenu from "@/components/Forms/ManageMenu";
-import ManageRestaurants from "@/components/ManageRestaurants";
+import ManageRestaurants from "@/components/Admin/ManageRestaurants";
 
 export default async function Page() {
   const user = await getUser();
