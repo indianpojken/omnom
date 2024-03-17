@@ -39,14 +39,6 @@ export async function getRestaurant(id: Restaurant["id"]) {
   }
 }
 
-export async function getRestaurantsByMunicipal(
-  municipal: Restaurant["municipal"]
-) {
-  return await database.query.restaurants.findMany({
-    where: ilike(restaurants.municipal, municipal),
-  });
-}
-
 export async function updateRestaurant(
   restaurant: Restaurant,
   data: Omit<Restaurant, "id">
