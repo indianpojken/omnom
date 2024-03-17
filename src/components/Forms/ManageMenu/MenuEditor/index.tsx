@@ -1,18 +1,16 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { AnimatePresence, motion } from "framer-motion";
-import useSWR from "swr";
 
 import MenuField from "@/components/Form/MenuField";
 import { getDatesFromDate, getDayFromDate } from "@/utils/dates";
+import { getMenuByRestaurantIdAndDate } from "@/services/menus";
 import { UpdateMenuAction } from "@/actions/menu";
 
 import type { Date, Menu, Restaurant } from "@/types";
 import SubmitButton from "@/components/Form/SubmitButton";
-
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function MenuEditor({
   restaurant,
@@ -22,14 +20,22 @@ export default function MenuEditor({
   date: Date;
 }) {
   const form = useForm<Menu>();
-  const { data, error, isLoading } = useSWR(
-    `/api/menu/${restaurant.id}/${date.year}-W${date.week}`,
-    fetcher
-  );
 
-  useEffect(() => form.reset(data?.menu), [form, data, date]);
+  const [data, setData] = useState<Menu>();
+  const [isPending, startTransition] = useTransition();
 
-  if (isLoading) return <></>;
+  useEffect(() => {
+    const fetcher = async () => {
+      const menu = await getMenuByRestaurantIdAndDate(restaurant.id, date);
+      setData(menu?.data as Menu);
+    };
+
+    startTransition(() => fetcher());
+  }, [date, restaurant.id]);
+
+  useEffect(() => form.reset(data), [data, date]);
+
+  if (isPending) return <></>;
 
   return (
     <AnimatePresence>

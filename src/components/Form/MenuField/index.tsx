@@ -98,16 +98,14 @@ export default function MenuField({
                 </section>
               </article>
 
-              {fields.length > 1 && (
-                <motion.button
-                  type="button"
-                  onClick={() => remove(index)}
-                  whileTap={{ scale: 0.9 }}
-                  className="flex p-2 sm:p-0 justify-center transition-colors text-red-50 items-center min-w-12 bg-red-400 border-b-2 border-red-900 hover:bg-red-700 rounded-md"
-                >
-                  {icons["remove"]}
-                </motion.button>
-              )}
+              <motion.button
+                type="button"
+                onClick={() => remove(index)}
+                whileTap={{ scale: 0.9 }}
+                className="flex p-2 sm:p-0 justify-center transition-colors text-red-50 items-center min-w-12 bg-red-400 border-b-2 border-red-900 hover:bg-red-700 rounded-md"
+              >
+                {icons["remove"]}
+              </motion.button>
             </motion.section>
           ))}
         </AnimatePresence>
