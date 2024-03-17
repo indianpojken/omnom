@@ -24,10 +24,11 @@ export default function DaySelector({
         {dates.map((date, index) => (
           <li className="flex flex-1" key={date}>
             <motion.button
+              key={date}
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.07 * index }}
-              whileTap={{ scale: 0.9 }}
+              whileTap={{ scale: 0.9, transition: { delay: 0 } }}
               onClick={() => setSelectedDate(date)}
               disabled={date === selectedDate}
               className="flex-1 border-b-2 border-amber-900 select-none transition-colors uppercase font-bold text-amber-900 hover:text-amber-100 bg-amber-100 disabled:bg-amber-950 disabled:text-amber-100 hover:bg-amber-950 p-2 rounded-md"
