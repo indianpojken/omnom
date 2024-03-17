@@ -1,5 +1,8 @@
 import { pgTable, text, json } from "drizzle-orm/pg-core";
 import { createId } from "@paralleldrive/cuid2";
+import { relations } from "drizzle-orm";
+
+import { restaurants } from "./restaurants";
 
 export const menus = pgTable("menus", {
   id: text("id")
@@ -9,3 +12,10 @@ export const menus = pgTable("menus", {
   restaurant: text("restaurant").notNull(),
   yearAndWeek: text("yearAndWeek").notNull(),
 });
+
+export const menusRelations = relations(menus, ({ one }) => ({
+  restaurant: one(restaurants, {
+    fields: [menus.restaurant],
+    references: [restaurants.id],
+  }),
+}));

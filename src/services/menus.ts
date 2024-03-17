@@ -4,7 +4,7 @@ import { and, eq } from "drizzle-orm";
 
 import { database } from "@/services/database";
 import { menus } from "@/schemas/menus";
-import { formatDate, getDatesFromDate } from "@/utils/dates";
+import { formatDate } from "@/utils/dates";
 
 import { Menu, Restaurant, Date, MenuEntry } from "@/types";
 
@@ -41,29 +41,4 @@ export async function upsertMenu(
     .returning();
 
   return menu;
-}
-
-export async function getRestaurantsWithMenu(
-  restaurants: Restaurant[],
-  date: Date
-): Promise<Array<Restaurant & { menu: Menu }>> {
-  return Promise.all(
-    restaurants.map(async (restaurant) => {
-      const menuItem = await getMenuByRestaurantIdAndDate(restaurant.id, date);
-      const menu =
-        (menuItem?.data as Menu) ??
-        (getDatesFromDate(date).reduce(
-          (previous, date) => ({
-            ...previous,
-            [date]: { items: [] },
-          }),
-          {}
-        ) as Menu);
-
-      return {
-        ...restaurant,
-        menu,
-      };
-    })
-  );
 }

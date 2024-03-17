@@ -1,6 +1,5 @@
 import Menu from "@/components/Menu";
 import { MotionSection } from "@/components/Motion";
-import { getRestaurantsByMunicipal } from "@/services/restaurants";
 
 export default async function Page({
   params,
@@ -8,7 +7,6 @@ export default async function Page({
   params: { municipal: string };
 }) {
   const municipal = decodeURIComponent(params.municipal);
-  const restaurants = await getRestaurantsByMunicipal(municipal);
 
   return (
     <MotionSection
@@ -19,7 +17,7 @@ export default async function Page({
     >
       <header className="font-bold uppercase mb-2">{municipal}</header>
 
-      <Menu restaurants={restaurants} />
+      <Menu municipal={municipal} />
     </MotionSection>
   );
 }

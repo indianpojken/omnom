@@ -1,44 +1,38 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-import { icons } from "@/components/Icons";
-import { getCurrentDate } from "@/utils/dates";
 import MenuItems from "./MenuItems";
-import type { Menu, Restaurant, Date } from "@/types";
-import { getRestaurantsWithMenu } from "@/services/menus";
+import { getRestaurantsWithMenuFromMunicipal } from "@/services/restaurants";
+import type { Date, RestaurantWithMenu } from "@/types";
+import RestaurantDetails from "./RestaurantDetails";
 
 export default function RestaurantList({
-  restaurants,
+  municipal,
   date,
   day,
 }: {
-  restaurants: Restaurant[];
-  date?: Date;
+  municipal: string;
+  date: Date;
   day: string;
 }) {
-  const [data, setData] = useState<Array<Restaurant & { menu: Menu }> | null>(
-    null
-  );
+  const [data, setData] = useState<Array<RestaurantWithMenu> | null>(null);
 
   useEffect(() => {
     const fetcher = async () => {
-      const restaurantsWithMenu = await getRestaurantsWithMenu(
-        restaurants,
-        date ?? getCurrentDate()
+      const restaurants = await getRestaurantsWithMenuFromMunicipal(
+        municipal,
+        date
       );
 
-      setData(
-        restaurantsWithMenu.sort((a, b) =>
-          a.name[0].toUpperCase().localeCompare(b.name[0].toUpperCase())
-        )
-      );
+      setData(restaurants);
     };
 
     fetcher();
   }, [day]);
+
+  console.log(data);
 
   return (
     <motion.section
@@ -56,60 +50,12 @@ export default function RestaurantList({
             </h2>
           </header>
 
-          <section className="flex my-2 gap-2 sm:gap-4 flex-col sm:flex-row">
-            <section className="p-2 flex-1 flex flex-row flex-wrap bg-amber-100 px-2 rounded-md justify-between">
-              <article className="flex gap-2 text-amber-900">
-                <aside>{icons["clock"]}</aside>
-                <p className="text-amber-950">{restaurant.lunchHoursOpening}</p>
-                <p>-</p>
-                <p className="text-amber-950">{restaurant.lunchHoursClosing}</p>
-              </article>
+          <RestaurantDetails restaurant={restaurant} />
 
-              <article className="flex gap-2 text-amber-900">
-                <p className="text-amber-950">{restaurant.price}</p>
-                <aside className="font-bold">SEK</aside>
-              </article>
-            </section>
-
-            <section className="flex flex-0 gap-4 justify-around sm:justify-normal bg-amber-100 sm:bg-white rounded-md">
-              {restaurant.website && (
-                <Link
-                  className="transition-colors text-amber-900 hover:text-amber-100 bg-amber-100 hover:bg-amber-950 p-2 rounded-md"
-                  href={`http://${restaurant.website}`}
-                >
-                  {icons["url"]}
-                </Link>
-              )}
-
-              {restaurant.phoneNumber && (
-                <Link
-                  className="transition-colors text-amber-900 hover:text-amber-100 bg-amber-100 hover:bg-amber-950 p-2 rounded-md"
-                  href={`tel:${restaurant.phoneNumber}`}
-                >
-                  {icons["phone"]}
-                </Link>
-              )}
-
-              <Link
-                className="transition-colors text-amber-900 hover:text-amber-100 bg-amber-100 hover:bg-amber-950 p-2 rounded-md"
-                href={`https://www.google.com/maps/search/?api=1&query=${restaurant.address.replaceAll(
-                  " ",
-                  "+"
-                )},+${restaurant.zipCode},+${restaurant.municipal}`}
-              >
-                {icons["location"]}
-              </Link>
-            </section>
-          </section>
-
-          {Object.keys(restaurant.menu).includes(day) && (
-            <>
-              {restaurant.menu[day].items.length ? (
-                <MenuItems items={restaurant.menu[day].items} />
-              ) : (
-                <p>Här var det tomt...</p>
-              )}
-            </>
+          {Object.keys(restaurant.menu ?? {}).includes(day) ? (
+            <MenuItems items={restaurant.menu[day].items} />
+          ) : (
+            <p>Här var det tomt...</p>
           )}
         </article>
       ))}

@@ -28,7 +28,7 @@ export default async function Page() {
 
         <LetterNavigator
           data={municipalitiesWithRestaurants}
-          comparativeData={municipalities}
+          comparativeData={[...municipalities]}
         />
       </section>
 

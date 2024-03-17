@@ -16,7 +16,7 @@ export const allergies = [
   "Spannmål",
   "Sulfiter",
   "Ägg",
-];
+] as const;
 
 export const municipalities = [
   "Ale",
@@ -309,4 +309,4 @@ export const municipalities = [
   "Östra Göinge",
   "Överkalix",
   "Övertorneå",
-];
+] as const;

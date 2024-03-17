@@ -26,3 +26,5 @@ export type Menu = Record<
     }[];
   }
 >;
+
+export type RestaurantWithMenu = Restaurant & { menu: Menu };
