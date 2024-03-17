@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 
 import MenuItems from "./MenuItems";
 import { getRestaurantsWithMenuFromMunicipal } from "@/services/restaurants";
@@ -18,6 +18,7 @@ export default function RestaurantList({
   day: string;
 }) {
   const [data, setData] = useState<Array<RestaurantWithMenu> | null>(null);
+  const [isPending, startTransition] = useTransition();
 
   useEffect(() => {
     const fetcher = async () => {
@@ -29,10 +30,10 @@ export default function RestaurantList({
       setData(restaurants);
     };
 
-    fetcher();
+    startTransition(() => fetcher());
   }, [day]);
 
-  console.log(data);
+  if (isPending) return <></>;
 
   return (
     <motion.section
