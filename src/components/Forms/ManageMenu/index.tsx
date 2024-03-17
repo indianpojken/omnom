@@ -8,7 +8,7 @@ import type { Restaurant } from "@/types";
 export default function ManageMenu({ restaurant }: { restaurant: Restaurant }) {
   return (
     <article className="flex flex-col">
-      <WeekSelector style="center">
+      <WeekSelector>
         {(date) => <MenuEditor restaurant={restaurant} date={date} />}
       </WeekSelector>
     </article>

@@ -4,14 +4,10 @@ import { icons } from "@/components/Icons";
 import { dayjs } from "@/utils/dates";
 import type { Date } from "@/types";
 
-type Styles = "center" | "normal";
-
 export default function WeekSelector({
   children,
-  style = "normal",
 }: {
   children: (date: Date) => React.ReactNode;
-  style?: Styles;
 }) {
   const [date, setDate] = useState({
     year: dayjs().year(),
@@ -44,12 +40,7 @@ export default function WeekSelector({
 
   return (
     <>
-      <article
-        className={
-          "overflow-hidden flex bg-amber-200 border-b-2 border-amber-900 rounded-md" +
-          (style === "center" ? " self-center" : "")
-        }
-      >
+      <article className="overflow-hidden flex bg-amber-200 border-b-2 border-amber-900 rounded-md">
         <button className={buttonStyle} onClick={() => decrement()}>
           {icons["arrowLeft"]}
         </button>

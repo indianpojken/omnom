@@ -44,7 +44,7 @@ export default function MenuEditor({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="flex flex-col"
+        className="flex flex-col mt-4"
         action={() =>
           form.handleSubmit((data) => UpdateMenuAction(data, date))()
         }
