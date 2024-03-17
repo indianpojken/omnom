@@ -53,7 +53,8 @@ export default function RestaurantList({
 
           <RestaurantDetails restaurant={restaurant} />
 
-          {Object.keys(restaurant.menu ?? {}).includes(day) ? (
+          {Object.keys(restaurant.menu ?? {}).includes(day) &&
+          restaurant.menu[day].items.length > 0 ? (
             <MenuItems items={restaurant.menu[day].items} />
           ) : (
             <p>Här var det tomt...</p>

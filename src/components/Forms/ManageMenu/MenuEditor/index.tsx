@@ -33,7 +33,14 @@ export default function MenuEditor({
     startTransition(() => fetcher());
   }, [date, restaurant.id]);
 
-  useEffect(() => form.reset(data), [data, date]);
+  useEffect(() => {
+    const defaultData = getDatesFromDate(date).reduce(
+      (previous, date) => ({ ...previous, [date]: { items: [] } }),
+      {}
+    );
+
+    form.reset(data ?? defaultData);
+  }, [data, date]);
 
   if (isPending) return <></>;
 
