@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 import { icons } from "@/components/Icons";
 import { dayjs } from "@/utils/dates";
@@ -42,7 +43,12 @@ export default function WeekSelector({
 
   return (
     <>
-      <article className="overflow-hidden flex bg-amber-200 border-b-2 border-amber-900 rounded-md">
+      <motion.article
+        initial={{ scaleY: 0, opacity: 0 }}
+        animate={{ scaleY: 1, opacity: 1 }}
+        transition={{ delay: 0.1 }}
+        className="overflow-hidden flex bg-amber-200 border-b-2 border-amber-900 rounded-md"
+      >
         <button className={buttonStyle} onClick={() => decrement()}>
           {icons["arrowLeft"]}
         </button>
@@ -55,7 +61,7 @@ export default function WeekSelector({
         <button className={buttonStyle} onClick={() => increment()}>
           {icons["arrowRight"]}
         </button>
-      </article>
+      </motion.article>
 
       {children(date)}
     </>
