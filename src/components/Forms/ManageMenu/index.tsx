@@ -1,6 +1,6 @@
 "use client";
 
-import WeekSelector from "../../WeekSelector";
+import WeekSelector from "@/components/Selectors/WeekSelector";
 import MenuEditor from "./MenuEditor";
 
 import type { Restaurant } from "@/types";

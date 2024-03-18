@@ -4,7 +4,7 @@ import { municipalities } from "@/constants";
 
 import MunicipalList from "@/components/MunicipalList";
 import LetterNavigator from "@/components/LetterNavigator";
-import Logo from "@/components/Logo/Logo";
+import Logo from "@/components/Logo";
 import { MotionMain } from "@/components/Motion";
 
 export default async function Page() {

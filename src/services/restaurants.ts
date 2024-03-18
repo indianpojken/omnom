@@ -28,7 +28,7 @@ export async function createRestaurant(
 }
 
 export async function getRestaurant(id: Restaurant["id"]) {
-  const restaurant = await database.query.restaurants.findMany({
+  const restaurant = await database.query.restaurants.findFirst({
     where: eq(restaurants.id, id),
   });
 
