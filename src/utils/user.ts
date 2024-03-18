@@ -14,3 +14,10 @@ export async function getUser(): Promise<User> {
 
   return data.user;
 }
+
+export async function isAdmin(): Promise<boolean> {
+  const user = await getUser();
+  const { role } = user.user_metadata;
+
+  return role === "admin";
+}

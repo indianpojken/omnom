@@ -1,4 +1,4 @@
-export const roles = ["admin", "owner"] as const;
+export const roles = ["admin", "user"] as const;
 
 export const allergies = [
   "Celiaki",

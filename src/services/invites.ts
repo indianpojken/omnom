@@ -1,3 +1,5 @@
+"use server";
+
 import { eq } from "drizzle-orm";
 
 import { database } from "@/services/database";
@@ -33,4 +35,8 @@ export async function deleteInviteById(id: Invite["id"]): Promise<Invite> {
   } else {
     throw new Error(`Failed to delete invite: no invite by id '${id}'.`);
   }
+}
+
+export async function getAllInvites() {
+  return await database.query.invites.findMany();
 }
