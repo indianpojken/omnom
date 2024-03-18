@@ -8,6 +8,7 @@ import DaySelector from "@/components/Selectors/DaySelector";
 import WeekSelector from "@/components/Selectors/WeekSelector";
 
 import { getDatesFromDate } from "@/utils/dates";
+import { icons } from "@/components/Icons";
 
 export default function Page({ params }: { params: { municipal: string } }) {
   const municipal = decodeURIComponent(params.municipal);
@@ -19,7 +20,10 @@ export default function Page({ params }: { params: { municipal: string } }) {
       transition={{ duration: 0.8 }}
       className="flex flex-col"
     >
-      <header className="font-bold uppercase mb-2">{municipal}</header>
+      <header className="flex gap-2 mb-2">
+        {icons["location"]}
+        <h2 className="font-bold uppercase"> {municipal}</h2>
+      </header>
 
       <WeekSelector>
         {(date) => (

@@ -8,6 +8,7 @@ import MenuItems from "../MenuItems";
 import { getRestaurantsWithMenuFromMunicipal } from "@/services/restaurants";
 import type { Date, RestaurantWithMenu } from "@/types";
 import RestaurantDetails from "./RestaurantDetails";
+import { icons } from "../Icons";
 
 export default function RestaurantList({
   municipal,
@@ -46,12 +47,15 @@ export default function RestaurantList({
     >
       {data?.map((restaurant) => (
         <article className="flex flex-col" key={restaurant.id}>
-          <header className="flex justify-between items-end flex-row">
-            <h2 className="text-zinc-900 font-bold uppercase">
-              <Link href={`/restaurant/${restaurant.id}`}>
-                {restaurant.name}
-              </Link>
-            </h2>
+          <header className="flex items-end flex-row">
+            <Link
+              href={`/restaurant/${restaurant.id}`}
+              className="flex gap-2 text-zinc-900 hover:text-amber-800 transition-colors"
+            >
+              {icons["restaurant"]}
+
+              <h2 className=" font-bold uppercase">{restaurant.name}</h2>
+            </Link>
           </header>
 
           <RestaurantDetails restaurant={restaurant} />
