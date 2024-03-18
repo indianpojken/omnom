@@ -13,6 +13,6 @@ export async function UpdateMenuAction(menu: Menu, yearAndWeek: Date) {
 
   if (user && user.id === restaurant?.owner) {
     await upsertMenu(restaurant, yearAndWeek, menu);
-    revalidatePath("/manage");
+    // revalidatePath("/manage");
   }
 }
