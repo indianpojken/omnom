@@ -8,7 +8,7 @@ import {
   updateRestaurant,
 } from "@/services/restaurants";
 import { Restaurant } from "@/types";
-import { getUser } from "@/utils/user";
+import { getUser, isAdmin } from "@/utils/user";
 import { revalidatePath } from "next/cache";
 
 function getData(formData: FormData): Omit<Restaurant, "id" | "owner"> {
@@ -51,10 +51,7 @@ export async function getAllRestaurantsAction(): Promise<Restaurant[]> {
 }
 
 export async function removeRestaurantAction(id: Restaurant["id"]) {
-  const user = await getUser();
-  const { role } = user.user_metadata;
-
-  if (role === "admin") {
+  if (await isAdmin()) {
     await deleteRestaurant(id);
     revalidatePath("/manage");
   } else {

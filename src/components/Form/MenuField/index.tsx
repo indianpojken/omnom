@@ -122,3 +122,11 @@ export default function MenuField({
     </article>
   );
 }
+
+/*
+
+Inbjudan
+Se restaurangs hela meny
+Favoriter
+
+*/
