@@ -35,8 +35,8 @@ export default function MenuField({
             >
               <article className="flex flex-col flex-1 last:mb-2">
                 <section className="flex flex-col sm:flex-row gap-4 mb-4">
-                  <article className="flex flex-1">
-                    <aside className="flex justify-center bg-amber-100 border-amber-900 rounded-s-md border-b-2 p-2 text-amber-900">
+                  <article className="flex flex-1 rounded-md overflow-hidden border-b-2 border-amber-900">
+                    <aside className="flex justify-center bg-amber-100 p-2 text-amber-900">
                       {icons["food"]}
                     </aside>
 
@@ -48,7 +48,7 @@ export default function MenuField({
                     </label>
 
                     <input
-                      className="flex-1 rounded-e-md border-b-2 border-amber-900 text-amber-950 bg-amber-50 p-2 outline-0 placeholder:text-zinc-400 focus:outline"
+                      className="flex-1 text-amber-950 bg-amber-50 p-2 outline-0 placeholder:text-zinc-400 focus:outline"
                       id={`${id}.items.${index}.food`}
                       placeholder="Maträtt"
                       {...register(`${id}.items.${index}.food`, {

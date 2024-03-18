@@ -6,7 +6,7 @@ export default function MenuItems({ items }: { items: Menu[""]["items"] }) {
     <section className="flex flex-col gap-4">
       {items.map((item) => (
         <article className="flex gap-2 sm:flex-row flex-col" key={item.food}>
-          <section className="flex flex-1 gap-4">
+          <section className="flex flex-1">
             <article className="flex flex-1 items-center bg-amber-50 border-amber-900 rounded-md overflow-hidden border-b-2">
               <aside className="p-2 h-full flex items-center text-amber-900 bg-amber-100">
                 {icons["food"]}
