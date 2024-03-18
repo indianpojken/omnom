@@ -2,6 +2,7 @@ import { getRestaurant } from "@/services/restaurants";
 import { MotionSection } from "@/components/Motion";
 import RestaurantDetails from "@/components/RestaurantList/RestaurantDetails";
 import { WeeklyRestaurantMenu } from "@/components/WeeklyRestaurantMenu";
+import { icons } from "@/components/Icons";
 
 export default async function Page({
   params,
@@ -18,7 +19,10 @@ export default async function Page({
       transition={{ duration: 0.8 }}
       className="flex flex-col"
     >
-      <header className="font-bold uppercase">{restaurant.name}</header>
+      <header className="flex gap-2">
+        {icons["restaurant"]}
+        <h2 className="font-bold uppercase">{restaurant.name}</h2>
+      </header>
 
       <RestaurantDetails restaurant={restaurant} />
 
