@@ -1,4 +1,5 @@
 import { Bebas_Neue } from "next/font/google";
+import Link from "next/link";
 
 const inter = Bebas_Neue({
   weight: "400",
@@ -7,8 +8,12 @@ const inter = Bebas_Neue({
 
 export default function Logo() {
   return (
-    <h1 className={`${inter.className} mb-4 text-7xl text-amber-900 uppercase`}>
-      Omnom
-    </h1>
+    <Link href="/">
+      <h1
+        className={`${inter.className} mb-4 text-7xl text-amber-900 uppercase`}
+      >
+        Omnom
+      </h1>
+    </Link>
   );
 }
