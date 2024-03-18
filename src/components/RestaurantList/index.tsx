@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useState, useTransition } from "react";
+import Link from "next/link";
 
 import MenuItems from "./MenuItems";
 import { getRestaurantsWithMenuFromMunicipal } from "@/services/restaurants";
@@ -47,7 +48,9 @@ export default function RestaurantList({
         <article className="flex flex-col" key={restaurant.id}>
           <header className="flex justify-between items-end flex-row">
             <h2 className="text-zinc-900 font-bold uppercase">
-              {restaurant.name}
+              <Link href={`/restaurant/${restaurant.id}`}>
+                {restaurant.name}
+              </Link>
             </h2>
           </header>
 
