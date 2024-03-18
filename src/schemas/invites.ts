@@ -8,5 +8,5 @@ export const invites = pgTable("invites", {
     .$defaultFn(() => createId())
     .primaryKey(),
   role: role("role"),
-  createdAt: timestamp("createAt", { withTimezone: true }),
+  createdAt: timestamp("createAt", { withTimezone: true }).defaultNow(),
 });
