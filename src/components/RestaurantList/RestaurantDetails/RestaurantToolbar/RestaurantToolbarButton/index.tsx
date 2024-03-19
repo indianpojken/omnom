@@ -9,13 +9,15 @@ export default function RestaurantToolbarButton({
   icon: React.ReactNode;
 }) {
   return (
-    <MotionArticle
-      initial={{ scale: 0 }}
-      animate={{ scale: 1 }}
-      transition={{ delay: 0.2 }}
-      className="transition-colors text-amber-900 hover:text-amber-100 bg-amber-100 hover:bg-amber-950 p-2 rounded-md"
-    >
-      <Link href={href}>{icon}</Link>
-    </MotionArticle>
+    <Link href={href}>
+      <MotionArticle
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ delay: 0.2 }}
+        className="transition-colors text-amber-900 hover:text-amber-100 bg-amber-100 hover:bg-amber-950 p-2 rounded-md"
+      >
+        {icon}
+      </MotionArticle>
+    </Link>
   );
 }
