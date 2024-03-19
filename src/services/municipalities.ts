@@ -1,7 +1,11 @@
+"use server";
+
 import type { Municipalities } from "@/types";
 import { getAllRestaurants } from "./restaurants";
 
-export function groupMunicipalitiesByInitial(municipalities: Municipalities) {
+export async function groupMunicipalitiesByInitial(
+  municipalities: Municipalities
+) {
   return municipalities.reduce(
     (previous: Record<string, string[]>, municipal) => {
       if (!previous[municipal[0]]?.includes(municipal)) {
