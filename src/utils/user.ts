@@ -13,6 +13,12 @@ export async function isAdmin(): Promise<boolean> {
   return role === "admin";
 }
 
+export async function isLoggedIn(): Promise<boolean> {
+  const supabase = createServerComponentClient({ cookies });
+  const { data, error } = await supabase.auth.getUser();
+  return !error && !!data?.user;
+}
+
 export async function getUser(): Promise<User> {
   const supabase = createServerComponentClient({ cookies });
 
