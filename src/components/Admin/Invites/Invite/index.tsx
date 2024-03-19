@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Icons } from "@/components/Icons";
 import { removeInviteAction } from "@/actions/invites";
 import { Invite } from "@/types";
+import { MotionAside, MotionButton } from "@/components/Motion";
 
 export default function Invite({ invite }: { invite: Invite }) {
   const [hoverRemove, setHoverRemove] = useState(false);
@@ -23,14 +24,18 @@ export default function Invite({ invite }: { invite: Invite }) {
         <p className="font-mono uppercase">{invite.id}</p>
       </Link>
 
-      <button
+      <MotionButton
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ opacity: 0 }}
+        whileTap={{ scale: 0.9 }}
         onClick={() => removeInviteAction(invite.id)}
         onMouseEnter={() => setHoverRemove(true)}
         onMouseLeave={() => setHoverRemove(false)}
-        className="flex justify-center flex-1 transition-colors text-amber-900 bg-amber-100 hover:text-amber-100 hover:bg-amber-950 p-2 rounded-md"
+        className="flex flex-1 justify-center transition-colors text-amber-900 bg-amber-100 hover:text-amber-100 hover:bg-amber-950 p-2 rounded-md"
       >
         {Icons["removeSolid"]}
-      </button>
+      </MotionButton>
     </section>
   );
 }

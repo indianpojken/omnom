@@ -11,7 +11,7 @@ export default function ManageRestaurantItem({
   restaurant: Restaurant;
 }) {
   return (
-    <article className="flex flex-col sm:flex-row bg-amber-50 overflow-hidden text-amber-900 border-b-2 border-amber-900">
+    <article className="flex flex-col sm:flex-row bg-amber-50 overflow-hidden text-amber-900">
       <article className="flex-1">
         <Link
           className="flex items-center gap-2 p-2 transition-colors hover:bg-amber-100"
