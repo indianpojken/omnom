@@ -9,7 +9,9 @@ export const menus = pgTable("menus", {
     .$defaultFn(() => createId())
     .primaryKey(),
   data: json("data"),
-  restaurant: text("restaurant").notNull(),
+  restaurant: text("restaurant")
+    .references(() => restaurants.id, { onDelete: "cascade" })
+    .notNull(),
   yearAndWeek: text("yearAndWeek").notNull(),
 });
 
