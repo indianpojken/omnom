@@ -6,11 +6,10 @@ import type { Menu } from "@/types";
 export default function MenuItems({ items }: { items: Menu[""]["items"] }) {
   return (
     <section className="flex flex-col gap-4">
-      {items.map((item, index) => (
+      {items.map((item) => (
         <motion.article
           initial={{ scaleY: 0, opacity: 0 }}
           animate={{ scaleY: 1, opacity: 1 }}
-          // transition={{ delay: 0.2 * index + 0.2 }}
           transition={{ delay: 0.2 }}
           className="flex gap-2 sm:flex-row flex-col"
           key={item.food}
@@ -38,11 +37,11 @@ export default function MenuItems({ items }: { items: Menu[""]["items"] }) {
                 </motion.li>
               )}
 
-              {item.allergies.map((allergy, allergyIndex) => (
+              {item.allergies.map((allergy, index) => (
                 <motion.li
                   initial={{ scale: 0, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: 0.05 * allergyIndex + 0.4 + 0.1 }}
+                  transition={{ delay: 0.05 * index + 0.4 + 0.1 }}
                   key={allergy}
                   className="flex-1 justify-center items-center flex transition-colors select-none p-2 rounded-md text-xs uppercase font-semibold bg-amber-200 text-amber-900 border-b-2 border-amber-900"
                 >
