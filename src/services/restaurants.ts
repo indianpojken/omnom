@@ -93,3 +93,14 @@ export async function getRestaurantsWithMenuFromMunicipal(
     menu: menus.at(0)?.data as Menu,
   }));
 }
+
+export async function deleteRestaurantByOwnerId(
+  id: Restaurant["owner"]
+): Promise<Restaurant> {
+  const [restaurant] = await database
+    .delete(restaurants)
+    .where(eq(restaurants.owner, id))
+    .returning();
+
+  return restaurant;
+}

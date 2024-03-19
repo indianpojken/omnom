@@ -15,7 +15,7 @@ export default function RestaurantDetails({
         initial={{ scaleY: 0, opacity: 0 }}
         animate={{ scaleY: 1, opacity: 1 }}
         transition={{ delay: 0.2 }}
-        className="p-2 flex-1 flex flex-row flex-wrap bg-amber-100 px-2 rounded-md justify-between"
+        className="p-2 flex-1 flex flex-row flex-wrap bg-amber-100 rounded-md justify-between"
       >
         <article className="flex gap-2 text-amber-900">
           <aside>{Icons["clock"]}</aside>

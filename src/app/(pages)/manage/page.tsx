@@ -4,7 +4,7 @@ import { getRestaurantFromUser } from "@/services/restaurants";
 import EditRestaurant from "@/components/Forms/EditRestaurant";
 import { AnimatePresence, MotionArticle } from "@/components/Motion";
 import ManageMenu from "@/components/Forms/ManageMenu";
-import ManageRestaurants from "@/components/Admin/ManageRestaurants";
+import ManageUsers from "@/components/Admin/ManageUsers";
 import Invites from "@/components/Admin/Invites";
 
 export default async function Page() {
@@ -19,7 +19,7 @@ export default async function Page() {
       {role === "admin" ? (
         <section className="mt-4 flex flex-col gap-4">
           <Invites />
-          <ManageRestaurants />
+          <ManageUsers />
         </section>
       ) : (
         <AnimatePresence>
