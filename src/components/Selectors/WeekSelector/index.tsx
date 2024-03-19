@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-import { icons } from "@/components/Icons";
+import { Icons } from "@/components/Icons";
 import { dayjs } from "@/utils/dates";
 import type { Date } from "@/types";
 
@@ -50,7 +50,7 @@ export default function WeekSelector({
         className="overflow-hidden flex bg-amber-200 border-b-2 border-amber-900 rounded-md"
       >
         <button className={buttonStyle} onClick={() => decrement()}>
-          {icons["arrowLeft"]}
+          {Icons["arrowLeft"]}
         </button>
 
         <section className="flex gap-4 bg-amber-100 flex-1 justify-center text-amber-950 px-4 justify-items-center items-center">
@@ -59,7 +59,7 @@ export default function WeekSelector({
         </section>
 
         <button className={buttonStyle} onClick={() => increment()}>
-          {icons["arrowRight"]}
+          {Icons["arrowRight"]}
         </button>
       </motion.article>
 

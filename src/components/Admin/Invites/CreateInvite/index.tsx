@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-import { icons } from "@/components/Icons";
+import { Icons } from "@/components/Icons";
 import { createInviteAction } from "@/actions/invites";
 
 export default function CreateInvite() {
@@ -13,7 +13,7 @@ export default function CreateInvite() {
       whileTap={{ scale: 0.9 }}
       className="flex justify-center p-2 transition-colors text-green-50 items-center min-w-12 bg-emerald-500 border-b-2 border-emerald-900 hover:bg-emerald-700 rounded-md"
     >
-      {icons["add"]}
+      {Icons["add"]}
     </motion.button>
   );
 }

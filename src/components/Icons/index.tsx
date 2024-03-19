@@ -1,4 +1,4 @@
-export const icons: { [key: string]: JSX.Element } = {
+export const Icons: { [key: string]: JSX.Element } = {
   email: (
     <svg
       xmlns="http://www.w3.org/2000/svg"

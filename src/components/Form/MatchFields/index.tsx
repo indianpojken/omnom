@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-import { icons } from "@/components/Icons";
+import { Icons } from "@/components/Icons";
 export { useInputMatcher } from "./hook";
 
 export default function MatchFields({
@@ -31,7 +31,7 @@ export default function MatchFields({
       <section className="flex flex-1 rounded-md border-b-2 border-amber-900 text-amber-950 bg-amber-100">
         {icon && (
           <aside className="flex justify-center item-center p-2 text-amber-900">
-            {icons[props.type!]}
+            {Icons[props.type!]}
           </aside>
         )}
 

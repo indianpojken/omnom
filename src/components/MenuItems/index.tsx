@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-import { icons } from "@/components/Icons";
+import { Icons } from "@/components/Icons";
 import type { Menu } from "@/types";
 
 export default function MenuItems({ items }: { items: Menu[""]["items"] }) {
@@ -17,7 +17,7 @@ export default function MenuItems({ items }: { items: Menu[""]["items"] }) {
           <section className="flex flex-1">
             <article className="flex flex-1 items-center bg-amber-50 border-amber-900 rounded-md overflow-hidden border-b-2">
               <aside className="p-2 h-full flex items-center text-amber-900 bg-amber-100">
-                {icons["food"]}
+                {Icons["food"]}
               </aside>
 
               <p className="text-amber-950 px-2">{item.food}</p>

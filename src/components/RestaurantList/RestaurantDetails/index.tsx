@@ -1,6 +1,6 @@
 import { MotionSection } from "@/components/Motion";
 
-import { icons } from "@/components/Icons";
+import { Icons } from "@/components/Icons";
 import { Restaurant } from "@/types";
 import RestaurantToolbar from "./RestaurantToolbar";
 
@@ -18,7 +18,7 @@ export default function RestaurantDetails({
         className="p-2 flex-1 flex flex-row flex-wrap bg-amber-100 px-2 rounded-md justify-between"
       >
         <article className="flex gap-2 text-amber-900">
-          <aside>{icons["clock"]}</aside>
+          <aside>{Icons["clock"]}</aside>
           <p className="text-amber-950">{restaurant.lunchHoursOpening}</p>
           <p>-</p>
           <p className="text-amber-950">{restaurant.lunchHoursClosing}</p>

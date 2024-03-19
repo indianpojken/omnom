@@ -1,6 +1,6 @@
 "use client";
 
-import { icons } from "@/components/Icons";
+import { Icons } from "@/components/Icons";
 
 export default function Field({
   icon,
@@ -12,7 +12,7 @@ export default function Field({
     <article className="flex-1 mt-2 flex rounded-md overflow-hidden border-b-2 border-amber-900">
       {icon && (
         <aside className="flex justify-center items-center font-bold p-2 bg-amber-100 text-amber-900">
-          {icons[icon]}
+          {Icons[icon]}
         </aside>
       )}
 

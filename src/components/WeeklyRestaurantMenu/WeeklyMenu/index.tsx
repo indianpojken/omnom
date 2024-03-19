@@ -7,7 +7,7 @@ import MenuItems from "@/components/MenuItems";
 import { Date, Menu, Restaurant } from "@/types";
 import { getMenuByRestaurantIdAndDate } from "@/services/menus";
 import { getDatesFromDate, getDayFromDate } from "@/utils/dates";
-import { icons } from "@/components/Icons";
+import { Icons } from "@/components/Icons";
 
 export function WeeklyMenu({
   restaurantId,
@@ -40,7 +40,7 @@ export function WeeklyMenu({
       {getDatesFromDate(date).map((day) => (
         <article key={day}>
           <header className="mb-2 flex gap-2">
-            {icons["calendar"]}
+            {Icons["calendar"]}
 
             <h2 className="text-zinc-900 font-bold uppercase">
               {getDayFromDate(day)}

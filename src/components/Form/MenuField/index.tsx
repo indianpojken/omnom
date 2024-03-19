@@ -4,7 +4,7 @@ import { useFieldArray, UseFormReturn } from "react-hook-form";
 
 import { AnimatePresence, motion } from "framer-motion";
 
-import { icons } from "@/components/Icons";
+import { Icons } from "@/components/Icons";
 import { allergies } from "@/constants";
 import type { Menu } from "@/types";
 
@@ -37,7 +37,7 @@ export default function MenuField({
                 <section className="flex flex-col sm:flex-row gap-4 mb-4">
                   <article className="flex flex-1 rounded-md overflow-hidden border-b-2 border-amber-900">
                     <aside className="flex justify-center bg-amber-100 p-2 text-amber-900">
-                      {icons["food"]}
+                      {Icons["food"]}
                     </aside>
 
                     <label
@@ -104,7 +104,7 @@ export default function MenuField({
                 whileTap={{ scale: 0.9 }}
                 className="flex p-2 sm:p-0 justify-center transition-colors text-red-50 items-center min-w-12 bg-red-400 border-b-2 border-red-900 hover:bg-red-700 rounded-md"
               >
-                {icons["remove"]}
+                {Icons["remove"]}
               </motion.button>
             </motion.section>
           ))}
@@ -117,7 +117,7 @@ export default function MenuField({
         whileTap={{ scale: 0.9 }}
         className="flex justify-center p-4 transition-colors text-green-50 items-center min-w-12 bg-emerald-500 border-b-2 border-emerald-900 hover:bg-emerald-700 rounded-md"
       >
-        {icons["add"]}
+        {Icons["add"]}
       </motion.button>
     </article>
   );

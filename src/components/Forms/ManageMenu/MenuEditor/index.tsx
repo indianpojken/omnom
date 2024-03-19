@@ -11,7 +11,7 @@ import { UpdateMenuAction } from "@/actions/menu";
 
 import type { Date, Menu, Restaurant } from "@/types";
 import SubmitButton from "@/components/Form/SubmitButton";
-import { icons } from "@/components/Icons";
+import { Icons } from "@/components/Icons";
 
 export default function MenuEditor({
   restaurant,
@@ -61,7 +61,7 @@ export default function MenuEditor({
           {getDatesFromDate(date).map((date) => (
             <section key={date} className="mb-4">
               <header className="mb-2 flex gap-2">
-                {icons["calendar"]}
+                {Icons["calendar"]}
                 <h2 className="text-zinc-900 font-bold uppercase">
                   {getDayFromDate(date)}
                 </h2>

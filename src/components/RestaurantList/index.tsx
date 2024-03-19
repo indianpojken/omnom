@@ -8,7 +8,7 @@ import MenuItems from "../MenuItems";
 import { getRestaurantsWithMenuFromMunicipal } from "@/services/restaurants";
 import type { Date, RestaurantWithMenu } from "@/types";
 import RestaurantDetails from "./RestaurantDetails";
-import { icons } from "../Icons";
+import { Icons } from "../Icons";
 
 export default function RestaurantList({
   municipal,
@@ -52,7 +52,7 @@ export default function RestaurantList({
               href={`/restaurant/${restaurant.id}`}
               className="flex gap-2 text-zinc-900 hover:text-amber-800 transition-colors"
             >
-              {icons["restaurant"]}
+              {Icons["restaurant"]}
 
               <h2 className=" font-bold uppercase">{restaurant.name}</h2>
             </Link>

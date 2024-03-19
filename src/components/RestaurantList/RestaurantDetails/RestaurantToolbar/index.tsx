@@ -1,4 +1,4 @@
-import { icons } from "@/components/Icons";
+import { Icons } from "@/components/Icons";
 import { Restaurant } from "@/types";
 import RestaurantToolbarButton from "./RestaurantToolbarButton";
 
@@ -12,14 +12,14 @@ export default function RestaurantToolbar({
       {restaurant.website && (
         <RestaurantToolbarButton
           href={`http://${restaurant.website}`}
-          icon={icons["url"]}
+          icon={Icons["url"]}
         />
       )}
 
       {restaurant.phoneNumber && (
         <RestaurantToolbarButton
           href={`tel:${restaurant.phoneNumber}`}
-          icon={icons["phone"]}
+          icon={Icons["phone"]}
         />
       )}
 
@@ -28,7 +28,7 @@ export default function RestaurantToolbar({
           " ",
           "+"
         )},+${restaurant.zipCode},+${restaurant.municipal}`}
-        icon={icons["location"]}
+        icon={Icons["location"]}
       />
     </section>
   );

@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import EditRestaurant from "../Forms/EditRestaurant";
 import { useState } from "react";
-import { icons } from "@/components/Icons";
+import { Icons } from "@/components/Icons";
 import { Restaurant } from "@/types";
 
 export default function UserToolbar({
@@ -33,7 +33,7 @@ export default function UserToolbar({
     <article className="flex flex-col rounded-md text-amber-900 border-b-amber-900 border-b-2 bg-amber-100 p-2">
       <section className="flex">
         <section className="flex gap-2">
-          {icons["person"]}
+          {Icons["person"]}
 
           <p className="font-bold">{user.email}</p>
         </section>
@@ -45,7 +45,7 @@ export default function UserToolbar({
               title="Redigera restaurang"
               onClick={() => setShowEditRestaurant(!showEditRestaurant)}
             >
-              {icons["edit"]}
+              {Icons["edit"]}
             </button>
           )}
 
@@ -54,7 +54,7 @@ export default function UserToolbar({
             title="Logga ut"
             onClick={async () => await signOut()}
           >
-            {icons["logout"]}
+            {Icons["logout"]}
           </button>
         </section>
       </section>

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 
-import { icons } from "@/components/Icons";
+import { Icons } from "@/components/Icons";
 import { removeInviteAction } from "@/actions/invites";
 import { Invite } from "@/types";
 
@@ -19,7 +19,7 @@ export default function Invite({ invite }: { invite: Invite }) {
           (hoverRemove ? "text-amber-100 bg-amber-950" : "text-amber-950")
         }
       >
-        {icons["url"]}
+        {Icons["url"]}
         <p className="font-mono uppercase">{invite.id}</p>
       </Link>
 
@@ -29,7 +29,7 @@ export default function Invite({ invite }: { invite: Invite }) {
         onMouseLeave={() => setHoverRemove(false)}
         className="flex justify-center flex-1 transition-colors text-amber-900 bg-amber-100 hover:text-amber-100 hover:bg-amber-950 p-2 rounded-md"
       >
-        {icons["removeSolid"]}
+        {Icons["removeSolid"]}
       </button>
     </section>
   );
