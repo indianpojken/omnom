@@ -1,5 +1,6 @@
 "use server";
 
+import { redirect } from "next/navigation";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
@@ -18,7 +19,7 @@ export async function getUser(): Promise<User> {
   const { data, error } = await supabase.auth.getUser();
 
   if (error || !data?.user) {
-    throw new Error("Unauthorized.");
+    redirect("/signin");
   }
 
   return data.user;
