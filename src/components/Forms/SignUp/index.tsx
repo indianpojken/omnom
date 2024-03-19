@@ -17,7 +17,10 @@ export default function SignUp({ invite }: { invite: Invite }) {
   );
 
   return (
-    <form className="flex flex-col gap-4 p-4" action={formAction}>
+    <form
+      className="flex flex-col gap-4 p-4 w-full max-w-96"
+      action={formAction}
+    >
       <section className="flex flex-col gap-6">
         <MatchFields
           id="email"
