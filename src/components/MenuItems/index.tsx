@@ -41,7 +41,9 @@ export default function MenuItems({ items }: { items: Menu[""]["items"] }) {
                 <motion.li
                   initial={{ scale: 0, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: 0.05 * index + 0.4 + 0.1 }}
+                  transition={{
+                    delay: 0.05 * index + 0.4 + (item.vegetarian ? 0.1 : 0),
+                  }}
                   key={allergy}
                   className="flex-1 justify-center items-center flex transition-colors select-none p-2 rounded-md text-xs uppercase font-semibold bg-amber-200 text-amber-900 border-b-2 border-amber-900"
                 >
