@@ -1,3 +1,5 @@
+import { headers } from "next/headers"; // prevent static render
+
 import { getAllMunicipalitiesWithRestaurants } from "@/services/municipalities";
 
 import { municipalities } from "@/constants";
@@ -8,6 +10,8 @@ import Logo from "@/components/Logo";
 import { MotionMain } from "@/components/Motion";
 
 export default async function Page() {
+  const headersList = headers(); // prevent static render
+
   const municipalitiesWithRestaurants =
     await getAllMunicipalitiesWithRestaurants();
 

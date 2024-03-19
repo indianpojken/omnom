@@ -2,14 +2,12 @@ import { groupMunicipalitiesByInitial } from "@/services/municipalities";
 import type { Municipalities } from "@/types";
 import Link from "next/link";
 
-export default async function MunicipalList({
+export default function MunicipalList({
   municipalities,
 }: {
   municipalities: Municipalities;
 }) {
-  const groupedMunicipalities = await groupMunicipalitiesByInitial(
-    municipalities
-  );
+  const groupedMunicipalities = groupMunicipalitiesByInitial(municipalities);
 
   return (
     <section className="flex flex-col gap-6">
