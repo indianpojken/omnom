@@ -22,7 +22,6 @@ export default async function Page() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="min-h-[calc(100vh+1px)]"
     >
       <UserToolbar user={user} restaurant={restaurant} />
       {role === "admin" ? (
