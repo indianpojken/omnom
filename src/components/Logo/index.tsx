@@ -8,9 +8,9 @@ const inter = Bebas_Neue({
 
 export default function Logo() {
   return (
-    <Link href="/">
+    <Link href="/" className="inline-block">
       <h1
-        className={`${inter.className} mb-4 text-7xl text-amber-900 uppercase`}
+        className={`${inter.className} select-none mb-4 text-7xl text-amber-900 uppercase`}
       >
         Omnom
       </h1>
