@@ -2,7 +2,11 @@ import { getUser } from "@/utils/user";
 import UserToolbar from "@/components/UserToolbar";
 import { getRestaurantFromUser } from "@/services/restaurants";
 import EditRestaurant from "@/components/Forms/EditRestaurant";
-import { AnimatePresence, MotionArticle } from "@/components/Motion";
+import {
+  AnimatePresence,
+  MotionArticle,
+  MotionSection,
+} from "@/components/Motion";
 import ManageMenu from "@/components/Forms/ManageMenu";
 import ManageUsers from "@/components/Admin/ManageUsers";
 import Invites from "@/components/Admin/Invites";
@@ -14,7 +18,12 @@ export default async function Page() {
   const { role } = user.user_metadata;
 
   return (
-    <section className="min-h-[calc(100vh+1px)]">
+    <MotionSection
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      className="min-h-[calc(100vh+1px)]"
+    >
       <UserToolbar user={user} restaurant={restaurant} />
       {role === "admin" ? (
         <section className="mt-4 flex flex-col gap-4">
@@ -41,6 +50,6 @@ export default async function Page() {
           </article>
         </AnimatePresence>
       )}
-    </section>
+    </MotionSection>
   );
 }
