@@ -3,6 +3,7 @@ import { MotionSection } from "@/components/Motion";
 import RestaurantDetails from "@/components/RestaurantList/RestaurantDetails";
 import { WeeklyRestaurantMenu } from "@/components/WeeklyRestaurantMenu";
 import { Icons } from "@/components/Icons";
+import Header from "@/components/Header";
 
 export default async function Page({
   params,
@@ -13,20 +14,24 @@ export default async function Page({
   const restaurant = await getRestaurant(restaurantId);
 
   return (
-    <MotionSection
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8 }}
-      className="flex flex-col"
-    >
-      <header className="flex gap-2">
-        {Icons["restaurant"]}
-        <h2 className="font-bold uppercase">{restaurant.name}</h2>
-      </header>
+    <>
+      <Header redirection={`/municipal/${restaurant.municipal}`} />
 
-      <RestaurantDetails restaurant={restaurant} />
+      <MotionSection
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        className="flex flex-col"
+      >
+        <header className="flex gap-2">
+          {Icons["restaurant"]}
+          <h2 className="font-bold uppercase">{restaurant.name}</h2>
+        </header>
 
-      <WeeklyRestaurantMenu restaurantId={restaurant.id} />
-    </MotionSection>
+        <RestaurantDetails restaurant={restaurant} />
+
+        <WeeklyRestaurantMenu restaurantId={restaurant.id} />
+      </MotionSection>
+    </>
   );
 }
