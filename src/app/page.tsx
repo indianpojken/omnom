@@ -6,7 +6,7 @@ import { municipalities } from "@/constants";
 
 import MunicipalList from "@/components/MunicipalList";
 import LetterNavigator from "@/components/LetterNavigator";
-import Logo from "@/components/Logo";
+import Header from "@/components/Header";
 import { MotionMain } from "@/components/Motion";
 
 export default async function Page() {
@@ -19,11 +19,9 @@ export default async function Page() {
     <MotionMain
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="flex mx-auto min-h-screen flex-col px-6 py-10 max-w-[800px]"
+      className="flex flex-col"
     >
-      <header>
-        <Logo />
-      </header>
+      <Header />
 
       <section>
         <header className="mb-2">
