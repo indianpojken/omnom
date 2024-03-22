@@ -20,7 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body className={inter.className + " overflow-y-scroll h-full"}>
-        {children}
+        <section className="min-h-full flex mx-auto flex-col px-6 py-10 max-w-[800px]">
+          {children}
+        </section>
       </body>
     </html>
   );
