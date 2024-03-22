@@ -80,7 +80,7 @@ export default function EditRestaurant({
         />
       </section>
 
-      <section className="flex flex-wrap gap-4">
+      <section className="flex flex-wrap gap-4 flex-col sm:flex-row">
         <Field
           id="address"
           type="text"
@@ -100,7 +100,7 @@ export default function EditRestaurant({
         />
       </section>
 
-      <section className="flex flex-wrap gap-4">
+      <section className="flex flex-wrap gap-4 flex-col sm:flex-row">
         <Field
           id="phoneNumber"
           type="text"
