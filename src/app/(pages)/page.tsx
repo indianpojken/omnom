@@ -6,8 +6,7 @@ import { municipalities } from "@/constants";
 
 import MunicipalList from "@/components/MunicipalList";
 import LetterNavigator from "@/components/LetterNavigator";
-import Header from "@/components/Header";
-import { MotionMain } from "@/components/Motion";
+import { MotionSection } from "@/components/Motion";
 
 export default async function Page() {
   const headersList = headers(); // prevent static render
@@ -16,13 +15,11 @@ export default async function Page() {
     await getAllMunicipalitiesWithRestaurants();
 
   return (
-    <MotionMain
+    <MotionSection
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       className="flex flex-col"
     >
-      <Header />
-
       <section>
         <header className="mb-2">
           <h2 className="text-zinc-900 font-bold uppercase">Kommuner</h2>
@@ -37,6 +34,6 @@ export default async function Page() {
       <section className="mt-10">
         <MunicipalList municipalities={municipalitiesWithRestaurants} />
       </section>
-    </MotionMain>
+    </MotionSection>
   );
 }
