@@ -12,9 +12,14 @@ export default function WeekSelector({
 }: {
   children: (date: Date) => React.ReactNode;
 }) {
+  const getDate =
+    dayjs().weekday() >= 6
+      ? dayjs().year(dayjs().year()).week(dayjs().week()).add(1, "week")
+      : dayjs();
+
   const [date, setDate] = useState({
-    year: dayjs().year(),
-    week: dayjs().week(),
+    year: getDate.year(),
+    week: getDate.week(),
   });
 
   const increment = () => {
