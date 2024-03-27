@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState, useTransition } from "react";
 import { motion } from "framer-motion";
 
 import MenuItems from "@/components/MenuItems";
@@ -8,6 +7,7 @@ import { Date, Menu, Restaurant } from "@/types";
 import { getMenuByRestaurantIdAndDate } from "@/services/menus";
 import { getDatesFromDate, getDayFromDate } from "@/utils/dates";
 import { Icons } from "@/components/Icons";
+import { useData } from "@/hooks/useData";
 
 export function WeeklyMenu({
   restaurantId,
@@ -16,17 +16,11 @@ export function WeeklyMenu({
   restaurantId: Restaurant["id"];
   date: Date;
 }) {
-  const [menu, setMenu] = useState<Menu>();
-  const [isPending, startTransition] = useTransition();
-
-  useEffect(() => {
-    const fetcher = async () => {
-      const data = await getMenuByRestaurantIdAndDate(restaurantId, date);
-      setMenu(data?.data as Menu);
-    };
-
-    startTransition(() => fetcher());
-  }, [date]);
+  const { data: menu, isPending } = useData<Menu>(
+    async () =>
+      (await getMenuByRestaurantIdAndDate(restaurantId, date))?.data as Menu,
+    [date]
+  );
 
   if (isPending) return <></>;
 

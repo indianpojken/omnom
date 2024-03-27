@@ -1,14 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState, useTransition } from "react";
 import Link from "next/link";
 
 import MenuItems from "../MenuItems";
 import { getRestaurantsWithMenuFromMunicipal } from "@/services/restaurants";
-import type { Date, RestaurantWithMenu } from "@/types";
 import RestaurantDetails from "./RestaurantDetails";
 import { Icons } from "../Icons";
+import { useData } from "@/hooks/useData";
+import type { Date, RestaurantWithMenu } from "@/types";
 
 export default function RestaurantList({
   municipal,
@@ -19,21 +19,10 @@ export default function RestaurantList({
   date: Date;
   day: string;
 }) {
-  const [data, setData] = useState<Array<RestaurantWithMenu> | null>(null);
-  const [isPending, startTransition] = useTransition();
-
-  useEffect(() => {
-    const fetcher = async () => {
-      const restaurants = await getRestaurantsWithMenuFromMunicipal(
-        municipal,
-        date
-      );
-
-      setData(restaurants);
-    };
-
-    startTransition(() => fetcher());
-  }, [day]);
+  const { data, isPending } = useData<RestaurantWithMenu[]>(
+    async () => await getRestaurantsWithMenuFromMunicipal(municipal, date),
+    [day]
+  );
 
   if (isPending) return <></>;
 
