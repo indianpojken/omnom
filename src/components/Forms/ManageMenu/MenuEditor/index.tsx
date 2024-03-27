@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useTransition } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -8,10 +8,10 @@ import MenuField from "@/components/Form/MenuField";
 import { getDatesFromDate, getDayFromDate } from "@/utils/dates";
 import { getMenuByRestaurantIdAndDate } from "@/services/menus";
 import { UpdateMenuAction } from "@/actions/menu";
-
-import type { Date, Menu, Restaurant } from "@/types";
 import SubmitButton from "@/components/Form/SubmitButton";
 import { Icons } from "@/components/Icons";
+import { useData } from "@/hooks/useData";
+import type { Date, Menu, Restaurant } from "@/types";
 
 export default function MenuEditor({
   restaurant,
@@ -22,17 +22,11 @@ export default function MenuEditor({
 }) {
   const form = useForm<Menu>();
 
-  const [data, setData] = useState<Menu>();
-  const [isPending, startTransition] = useTransition();
-
-  useEffect(() => {
-    const fetcher = async () => {
-      const menu = await getMenuByRestaurantIdAndDate(restaurant.id, date);
-      setData(menu?.data as Menu);
-    };
-
-    startTransition(() => fetcher());
-  }, [date, restaurant.id]);
+  const { data, isPending } = useData<Menu>(
+    async () =>
+      (await getMenuByRestaurantIdAndDate(restaurant.id, date))?.data as Menu,
+    [date, restaurant.id]
+  );
 
   useEffect(() => {
     const defaultData = getDatesFromDate(date).reduce(
